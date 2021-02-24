@@ -1,4 +1,6 @@
+# Ignore node modules
 node_modules/
-assets/css/home.css/
-assets/css/home.css/
-assets/css/photographer.css/
+
+# Ignore css files 
+home.css
+photographer.css
