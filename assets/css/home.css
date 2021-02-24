@@ -1,1 +1,148 @@
+header {
+  display: flex;
+  width: 70%;
+  margin: 45px 0 0 100px; }
+  @media screen and (max-width: 640px) {
+    header {
+      flex-wrap: wrap;
+      margin: 30px 0; } }
+
+.fisheye-logo {
+  margin: 0 88px 0 0;
+  text-decoration: none; }
+  @media screen and (max-width: 640px) {
+    .fisheye-logo {
+      margin: 0 0 0 10px; } }
+
+.letter-logo__y {
+  position: relative;
+  top: 10px;
+  right: 2px; }
+
+.letter-logo__e {
+  position: relative;
+  right: 7px; }
+
+.letter-logo__i {
+  position: relative;
+  top: 2px; }
+
+@media screen and (max-width: 640px) {
+  .letter-logo__f {
+    width: 19px;
+    height: 29px; }
+  .letter-logo__i {
+    width: 5px;
+    height: 29px; }
+  .letter-logo__s {
+    width: 19px;
+    height: 21px; }
+  .letter-logo__h {
+    width: 19px;
+    height: 29px; }
+  .letter-logo__camera {
+    width: 29px;
+    height: 26px; }
+  .letter-logo__y {
+    top: 8px;
+    width: 21px;
+    height: 29px; }
+  .letter-logo__e {
+    width: 21px;
+    height: 21px; } }
+
+.tags {
+  font-family: 'DM Sans', sans-serif;
+  list-style: none;
+  display: flex; }
+  .tags__name {
+    border: 0.5px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 11px;
+    padding: 0 5px;
+    margin: 0 5px 0 0;
+    font-size: 0.8em;
+    color: #901C1C;
+    font-weight: 500;
+    cursor: pointer; }
+    .tags__name:hover {
+      background-color: #901C1C;
+      color: #ffffff; }
+    .tags__name:focus {
+      background-color: #901C1C;
+      color: #ffffff; }
+  @media screen and (max-width: 640px) {
+    .tags {
+      flex-wrap: wrap;
+      padding: 0;
+      justify-content: center;
+      margin: 35px 20px 0 20px; }
+      .tags__name {
+        margin: 0 2px 5px 0;
+        font-size: 0.7em; } }
+
+* {
+  font-family: 'DM sans'; }
+
+.title {
+  font-size: 2.25em;
+  color: #901C1C;
+  position: absolute;
+  top: 44px;
+  right: 120px;
+  margin: 0 0 0 76px;
+  font-weight: 400; }
+  @media screen and (max-width: 640px) {
+    .title {
+      left: 154px;
+      font-size: 0.9em;
+      top: 40px; } }
+
+.photographers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 80px; }
+  @media screen and (max-width: 640px) {
+    .photographers-grid {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px; } }
+
+.photographer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; }
+  .photographer__link {
+    text-decoration: none;
+    text-align: center; }
+  .photographer__picture {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 263px;
+    height: 277px;
+    border-radius: 50%; }
+  .photographer__name {
+    margin: 15px 0 0 0;
+    font-size: 2.25em;
+    color: #D3573C;
+    font-weight: 400; }
+  .photographer__city {
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #901C1C;
+    margin: 0; }
+  .photographer__description {
+    font-size: 0.6em;
+    font-weight: 400;
+    margin: 0; }
+  .photographer__price {
+    font-size: 0.5em;
+    font-weight: 400;
+    margin: 0;
+    color: #757575; }
+  .photographer__tags {
+    display: flex;
+    list-style: none;
+    padding-left: 0; }
 

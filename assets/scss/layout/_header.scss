@@ -1,0 +1,99 @@
+header {
+    display: flex;
+    width: 70%;
+    margin: 45px 0 0 100px;
+    @include smartphone {
+        flex-wrap: wrap;
+        margin: 30px 0;
+    }
+}
+
+.fisheye-logo {
+    margin: 0 88px 0 0;
+    text-decoration: none;
+    @include smartphone {
+        margin: 0 0 0 10px;
+    }
+}
+
+.letter-logo {
+    &__y {
+        position: relative;
+        top: 10px;
+        right: 2px;
+    }
+    &__e {
+        position: relative;
+        right: 7px;
+    }
+    &__i {
+        position: relative;
+        top: 2px;
+    }
+    @include smartphone {
+        &__f {
+            width: 19px;
+            height: 29px;
+        }
+        &__i {
+            width: 5px;
+            height: 29px;
+        }
+        &__s {
+            width: 19px;
+            height: 21px;
+        }
+        &__h {
+            width: 19px;
+            height: 29px;
+        }
+        &__camera {
+            width: 29px;
+            height: 26px;
+        }
+        &__y {
+            top: 8px;
+            width: 21px;
+            height: 29px;
+        }
+        &__e {
+            width: 21px;
+            height: 21px;
+        }
+    }
+}
+
+.tags {
+    font-family: 'DM Sans', sans-serif;
+    list-style: none;
+    display: flex;
+    &__name {
+        border: 0.5px solid #C4C4C4;
+        box-sizing: border-box;
+        border-radius: 11px;
+        padding: 0 5px;
+        margin: 0 5px 0 0;
+        font-size: 0.8em;
+        color: #901C1C;
+        font-weight: 500;
+        cursor: pointer;
+        &:hover {
+            background-color: #901C1C;
+            color: #ffffff;
+        }
+        &:focus {
+            background-color: #901C1C;
+            color: #ffffff;
+        }
+    }
+    @include smartphone {
+        flex-wrap: wrap;
+        padding: 0;
+        justify-content: center;
+        margin: 35px 20px 0 20px;
+        &__name {
+            margin: 0 2px 5px 0;
+            font-size: 0.7em;
+        }
+    }
+}
