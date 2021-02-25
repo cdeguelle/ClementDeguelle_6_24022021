@@ -1,0 +1,21 @@
+.tags {
+    &__name {
+        border: 0.5px solid #C4C4C4;
+        box-sizing: border-box;
+        border-radius: 11px;
+        padding: 0 5px;
+        margin: 0 2px 5px 0;
+        font-size: 0.7em;
+        color: #901C1C;
+        font-weight: 500;
+        cursor: pointer;
+        &:hover {
+            background-color: #901C1C;
+            color: #ffffff;
+        }
+        &:focus {
+            background-color: #901C1C;
+            color: #ffffff;
+        }
+    }
+}
