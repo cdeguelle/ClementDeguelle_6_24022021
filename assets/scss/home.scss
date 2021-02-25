@@ -4,6 +4,12 @@
     font-family: 'DM sans';
 }
 
+body {
+    @include tablette {
+        margin: 0;
+    }
+}
+
 h1 {
     font-size: 2.25em;
     color: #901C1C;
@@ -12,12 +18,31 @@ h1 {
     font-weight: 400;
     font-size: 0.9em;
     top: 40px;
+    @include desktop {
+        top: 8px;
+        font-size: 2.25em;
+        right: 100px;
+    }
+    @include tablette {
+        position: initial;
+        font-size: 2.25em;
+        text-align: center;
+    }
 }
 
 #photographers-grid {
     display: flex;
     flex-direction: column;
     margin-top: 50px;
+    @include desktop {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 80px;
+    }
+    @include tablette {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .photographer {
