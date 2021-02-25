@@ -19,22 +19,3 @@
         }
     }
 }
-
-.contact {
-    background-color: #901C1C;
-    border-color: transparent;
-    color: #ffffff;
-    border-radius: 5px;
-    padding: 20px 10px;
-    font-size: 1.1em;
-    font-weight: 700;
-    width: 170px;
-    &:hover {
-        background-color: #DB8876;
-        color: #000000;
-    }
-    &:focus {
-        background-color: #DB8876;
-        color: #000000;
-    }
-}
