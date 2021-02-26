@@ -114,9 +114,11 @@ header {
     padding: 5px 20px;
     font-size: 1em;
     @include desktop {
-        position: relative;
-        top: 25px;
-        right: 500px;
+        position: absolute;
+        top: 205px;
+        left: 400px;
+        margin-left: 0px;
+        right: 0px;
         height: 50px;
     }
     @include tablette {
