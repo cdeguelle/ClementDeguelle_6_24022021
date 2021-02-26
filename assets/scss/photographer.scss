@@ -44,17 +44,23 @@ header {
         @include tablette {
             margin-left: 20px;
         }
+        @include desktop {
+            justify-content: flex-start;
+        }
     }
     &__name {
         &--profile {
             position: initial;
             font-size: 2.2em;
             margin-top: 0;
+            width: 180px;
             @include desktop {
                 font-size: 4em;
+                width: auto;
             }
             @include tablette {
                 text-align: left;
+                width: auto;
             }
         }
     }
@@ -82,7 +88,7 @@ header {
             width: 100px;
             height: 100px;
             position: absolute;
-            top: 105px;
+            top: 110px;
             right: 20px;
             box-shadow: 0px 4px 12px 0px #000000 25%;
             @include desktop {
@@ -114,11 +120,9 @@ header {
     padding: 5px 20px;
     font-size: 1em;
     @include desktop {
-        position: absolute;
-        top: 205px;
-        left: 400px;
-        margin-left: 0px;
-        right: 0px;
+        position: initial;
+        margin-top: 20px;
+        margin-left: 30px;
         height: 50px;
     }
     @include tablette {
@@ -147,7 +151,7 @@ header {
     padding: 0 10px;
     position: absolute;
     left: 200px;
-    top: 550px;
+    top: 490px;
     z-index: 10;
     & li {
         list-style: none;
@@ -215,12 +219,11 @@ header {
     &__name {
         font-size: 0.9em;
         font-weight: 400;
+        flex: 1;
     }
     &__price {
         font-size: 0.8em;
-        & i {
-            margin-left: 10px;
-        }
+        margin-right: 20px;
         @include desktop {
             font-size: 1.5em;
         }
@@ -231,5 +234,16 @@ header {
         &__name {
             font-size: 1.5em;
         }
+    }
+}
+
+video {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    @include desktop {
+        width: 350px;
+        height: 300px;
     }
 }
