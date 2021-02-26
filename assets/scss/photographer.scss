@@ -228,6 +228,14 @@ header {
             font-size: 1.5em;
         }
     }
+    &__like {
+        & i {
+            cursor: pointer;
+            &:hover {
+                scale: 1.3;
+            }
+        }
+    }
     @include desktop {
         width: 350px;
         height: 300px;

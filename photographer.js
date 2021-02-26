@@ -81,12 +81,20 @@ function displayPhotographerGrid (photographerMedia)  {
                 <h2 class="photo__name">${photographerMedia[index].description}</h2>
                 <p class="photo__price">${photographerMedia[index].price} €</p>
                 <p class="photo__like">
-                    <span class="photo__like-count">${photographerMedia[index].likes}</span>
-                    <i class="fas fa-heart photo__like-icon"></i>
+                <span class="photo__like-count" id="photo__like-count-${photographerMedia[index].id}">${photographerMedia[index].likes}</span>
+                <i class="fas fa-heart photo__like-icon" id="photo__like-icon-${photographerMedia[index].id}" onclick="incrementPhotoLikesCount('photo__like-count-${photographerMedia[index].id}')"></i>
                 </p>
             </div>
         </article>`;
     }
+}
+
+// Compteur de likes par photos
+function incrementPhotoLikesCount (id) {
+    let elem = document.getElementById(id)
+    let likes = parseInt(elem.textContent, 10)
+    likes++
+    elem.innerHTML = likes
 }
 
 
