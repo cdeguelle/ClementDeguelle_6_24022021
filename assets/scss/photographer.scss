@@ -210,6 +210,10 @@ header {
     }
 }
 
+figure {
+    margin: 0;
+}
+
 .photo {
     width: 300px;
     height: 250px;
@@ -253,5 +257,17 @@ video {
     @include desktop {
         width: 350px;
         height: 300px;
+    }
+}
+
+#carousel {
+    display: none;
+    &__close {
+        position: relative;
+        top: 15px;
+        right: 15px;
+    }
+    &__item {
+        float: left;
     }
 }

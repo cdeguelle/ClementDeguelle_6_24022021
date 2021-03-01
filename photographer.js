@@ -1,6 +1,8 @@
 // DOM Elements
 const dropdownMenu = document.querySelector('.dropdown');
 const dropdownLink = document.querySelector('.filter-dropdown-link');
+const closeBtn = document.getElementById('carousel__close');
+const carousel = document.getElementById('carousel');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -30,9 +32,11 @@ request.onreadystatechange = function() {
         var response = JSON.parse(this.responseText);
         console.log(response);
         displayPhotographerInfo(response.photographers.find(photographer => {
-            return photographer.id === photographerID;
-        }));
-        displayPhotographerGrid(response.media.filter(filterById));
+            return photographer.id === photographerID
+        }))
+        let photographerMedia = response.media.filter(filterById)
+        displayPhotographerGrid(photographerMedia)
+        openCarousel(photographerMedia)
     }
 };
 request.open("GET", "data.json");
@@ -41,9 +45,9 @@ request.send();
 // Récupération des photos/videos par id de photographe
 function filterById (media) {
     if (media.photographerId === photographerID) {
-        return true;
+        return true
     } else {
-        return false;
+        return false
     }
 }
 
@@ -68,15 +72,15 @@ function displayPhotographerInfo (photographer) {
 }
 
 // Remplissage dynamique de la grille de photos
-function displayPhotographerGrid (photographerMedia)  {
+function displayPhotographerGrid (photographerMedia) {
     let photographerGrid = document.querySelector('.photo-grid');
     for (let index = 0; index < photographerMedia.length; index++) {
         photographerGrid.innerHTML += `
         <article class="photo-grid__picture">
-            <a href="#" class="photo-grid__link">
+            <figure class="photo-grid__link" onclick="openCarousel()">
                 ${photographerMedia[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].image}" alt="${photographerMedia[index].description}" class="photo">` : ''}
                 ${photographerMedia[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].video}" alt="${photographerMedia[index].description}" class="video" type="video/mp4"></video>` : ''}
-            </a>
+            </figure>
             <div class="photo-grid__description">
                 <h2 class="photo__name">${photographerMedia[index].description}</h2>
                 <p class="photo__price">${photographerMedia[index].price} €</p>
@@ -85,7 +89,7 @@ function displayPhotographerGrid (photographerMedia)  {
                 <i class="fas fa-heart photo__like-icon" id="photo__like-icon-${photographerMedia[index].id}" onclick="incrementPhotoLikesCount('photo__like-count-${photographerMedia[index].id}')"></i>
                 </p>
             </div>
-        </article>`;
+        </article>`
     }
 }
 
@@ -96,6 +100,26 @@ function incrementPhotoLikesCount (id) {
     likes++
     elem.innerHTML = likes
 }
+
+// Carousel
+function openCarousel (photographerMedia) {
+    carousel.style.display = "block"
+    for (let index = 0; index < photographerMedia.length; index++) {
+        carousel.innerHTML += `
+        <figure class="carousel__item">
+            ${photographerMedia[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].image}" alt="${photographerMedia[index].description}" class="carousel__photo">` : ''}
+            ${photographerMedia[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].video}" alt="${photographerMedia[index].description}" class="carousel__video" type="video/mp4"></video>` : ''}
+        <figure>`
+    }
+}
+
+closeBtn.addEventListener('click', closeCarousel)
+
+function closeCarousel () {
+    carousel.style.display = "none"
+}
+
+
 
 
 
