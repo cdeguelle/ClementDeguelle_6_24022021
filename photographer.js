@@ -1,8 +1,6 @@
 // DOM Elements
 const dropdownMenu = document.querySelector('.dropdown');
 const dropdownLink = document.querySelector('.filter-dropdown-link');
-const closeBtn = document.getElementById('carousel__close');
-const carousel = document.getElementById('carousel');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -105,21 +103,39 @@ function incrementPhotoLikesCount (id) {
 // Carousel
 function openCarousel () {
     let photographerMedia = media
-    console.log(media);
-    carousel.classList.remove('display-none')
+    let carousel = document.getElementById('carousel')
+    let carouselContainer = document.getElementById('carousel__container')
+    carouselContainer.innerHTML = ""
+    carouselContainer.style.transform = 'translateX(0%)'
+    carousel.style.display = "block"
     for (let index = 0; index < photographerMedia.length; index++) {
-        carousel.innerHTML += `
+        carouselContainer.innerHTML += `
         <figure class="carousel__item">
             ${photographerMedia[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].image}" alt="${photographerMedia[index].description}" class="carousel__photo">` : ''}
             ${photographerMedia[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].video}" alt="${photographerMedia[index].description}" class="carousel__video" type="video/mp4"></video>` : ''}
         <figure>`
     }
+    let ratio = photographerMedia.length  
+    document.getElementById('carousel__container').style.width = (ratio * 100) + "%"
+    document.querySelectorAll('.carousel__item').forEach(elt => elt.style.width = 100 / ratio + "%")
 }
 
-closeBtn.addEventListener('click', closeCarousel)
-
 function closeCarousel () {
-    carousel.classList.add('display-none')
+    document.getElementById('carousel').style.display = "none"
+}
+
+function nextCarousel () {
+    let photographerMedia = media
+    let carouselContainer = document.getElementById('carousel__container')
+    let translateX = -100 / photographerMedia.length
+    carouselContainer.style.transform += 'translateX(' + translateX + '%)'
+}
+
+function prevCarousel () {
+    let photographerMedia = media
+    let carouselContainer = document.getElementById('carousel__container')
+    let translateX = 100 / photographerMedia.length
+    carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
 
 

@@ -260,17 +260,61 @@ video {
     }
 }
 
-.display-none {
-    display: none;
-}
-
 #carousel {
+    display: none;
+    overflow: hidden;
+    background-color: #ffffff9c;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
     &__close {
-        position: relative;
+        position: fixed;
+        z-index: 2;
         top: 15px;
         right: 15px;
+        scale: 2;
+        color: #901C1C;
+        cursor: pointer;
     }
-    &__item {
-        float: left;
+    &__next {
+        position: fixed;
+        z-index: 2;
+        right: 20px;
+        top: 50%;
+        scale: 2;
+        color: #901C1C;
+        cursor: pointer;
+    }
+    &__prev {
+        position: fixed;
+        z-index: 2;
+        left: 20px;
+        top: 50%;
+        scale: 2;
+        color: #901C1C;
+        cursor: pointer;
+    }
+    &__container {
+        display: flex;
+        margin-left: 25%;
+        align-items: center;
+        position: fixed;
+        height: 100%;
+    }
+}
+
+.carousel__item {
+    & img {
+        object-fit: cover;
+        width: 50%;
+        height: 50%;
+    }
+    & video {
+        object-fit: cover;
+        width: 80%;
+        height: 80%;
+        margin-left: -15%;
     }
 }
