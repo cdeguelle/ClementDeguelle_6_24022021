@@ -26,6 +26,7 @@ var photographerID = parseInt(new URLSearchParams(window.location.search).get('p
 
 // Requête objet JSON
 var request = new XMLHttpRequest();
+var media = [];
 
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -34,9 +35,9 @@ request.onreadystatechange = function() {
         displayPhotographerInfo(response.photographers.find(photographer => {
             return photographer.id === photographerID
         }))
-        let photographerMedia = response.media.filter(filterById)
+        media = response.media.filter(filterById)
+        let photographerMedia = media
         displayPhotographerGrid(photographerMedia)
-        openCarousel(photographerMedia)
     }
 };
 request.open("GET", "data.json");
@@ -102,8 +103,10 @@ function incrementPhotoLikesCount (id) {
 }
 
 // Carousel
-function openCarousel (photographerMedia) {
-    carousel.style.display = "block"
+function openCarousel () {
+    let photographerMedia = media
+    console.log(media);
+    carousel.classList.remove('display-none')
     for (let index = 0; index < photographerMedia.length; index++) {
         carousel.innerHTML += `
         <figure class="carousel__item">
@@ -116,7 +119,7 @@ function openCarousel (photographerMedia) {
 closeBtn.addEventListener('click', closeCarousel)
 
 function closeCarousel () {
-    carousel.style.display = "none"
+    carousel.classList.add('display-none')
 }
 
 

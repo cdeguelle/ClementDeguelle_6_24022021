@@ -260,8 +260,11 @@ video {
     }
 }
 
-#carousel {
+.display-none {
     display: none;
+}
+
+#carousel {
     &__close {
         position: relative;
         top: 15px;
