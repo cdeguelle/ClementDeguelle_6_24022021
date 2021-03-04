@@ -113,6 +113,7 @@ function openCarousel () {
         <figure class="carousel__item">
             ${photographerMedia[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].image}" alt="${photographerMedia[index].description}" class="carousel__photo">` : ''}
             ${photographerMedia[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].video}" alt="${photographerMedia[index].description}" class="carousel__video" type="video/mp4"></video>` : ''}
+            <h2 class="photo__name--carousel">${photographerMedia[index].description}</h2>
         <figure>`
     }
     let ratio = photographerMedia.length  

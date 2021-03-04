@@ -224,6 +224,9 @@ figure {
         font-size: 0.9em;
         font-weight: 400;
         flex: 1;
+        &--carousel {
+            color: #901C1C;
+        }
     }
     &__price {
         font-size: 0.8em;
@@ -298,23 +301,36 @@ video {
     }
     &__container {
         display: flex;
-        margin-left: 25%;
+        left: 50%;
+        margin-left: -125px;
         align-items: center;
         position: fixed;
         height: 100%;
+        @include desktop {
+            margin-left: -450px;
+        }
     }
 }
 
 .carousel__item {
     & img {
-        object-fit: cover;
-        width: 50%;
-        height: 50%;
+        object-fit: contain;
+        @include desktop {
+            width: 900px;
+            height: 600px;
+        }
+    }
+    & h2 {
+        width: 900px;
+        text-align: center;
     }
     & video {
-        object-fit: cover;
-        width: 80%;
+        width: 325px;
         height: 80%;
-        margin-left: -15%;
+        margin-left: -10%;
+        @include desktop {
+            width: 700px;
+            margin-left: 100px;
+        }
     }
 }
