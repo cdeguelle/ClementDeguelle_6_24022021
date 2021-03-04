@@ -210,6 +210,10 @@ header {
     }
 }
 
+figure {
+    margin: 0;
+}
+
 .photo {
     width: 300px;
     height: 250px;
@@ -220,6 +224,9 @@ header {
         font-size: 0.9em;
         font-weight: 400;
         flex: 1;
+        &--carousel {
+            color: #901C1C;
+        }
     }
     &__price {
         font-size: 0.8em;
@@ -253,5 +260,77 @@ video {
     @include desktop {
         width: 350px;
         height: 300px;
+    }
+}
+
+#carousel {
+    display: none;
+    overflow: hidden;
+    background-color: #ffffff9c;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    &__close {
+        position: fixed;
+        z-index: 2;
+        top: 15px;
+        right: 15px;
+        scale: 2;
+        color: #901C1C;
+        cursor: pointer;
+    }
+    &__next {
+        position: fixed;
+        z-index: 2;
+        right: 20px;
+        top: 50%;
+        scale: 2;
+        color: #901C1C;
+        cursor: pointer;
+    }
+    &__prev {
+        position: fixed;
+        z-index: 2;
+        left: 20px;
+        top: 50%;
+        scale: 2;
+        color: #901C1C;
+        cursor: pointer;
+    }
+    &__container {
+        display: flex;
+        left: 50%;
+        margin-left: -125px;
+        align-items: center;
+        position: fixed;
+        height: 100%;
+        @include desktop {
+            margin-left: -450px;
+        }
+    }
+}
+
+.carousel__item {
+    & img {
+        object-fit: contain;
+        @include desktop {
+            width: 900px;
+            height: 600px;
+        }
+    }
+    & h2 {
+        width: 900px;
+        text-align: center;
+    }
+    & video {
+        width: 325px;
+        height: 80%;
+        margin-left: -10%;
+        @include desktop {
+            width: 700px;
+            margin-left: 100px;
+        }
     }
 }
