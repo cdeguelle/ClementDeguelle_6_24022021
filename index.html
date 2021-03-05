@@ -14,19 +14,19 @@
 
 <body>
     <header id="header" role="banner">
-        <a href="#" id="fisheye-logo">
+        <a href="./index.html" id="fisheye-logo">
             <img src="./public/img/Sample_Photos/Logo.png" alt="Logo de FishEye">
         </a>
         <nav aria-label="photographer categories">
             <ul class="tags">
-                <li class="tags__name">#Portrait</li>
-                <li class="tags__name">#Art</li>
-                <li class="tags__name">#Fashion</li>
-                <li class="tags__name">#Architecture</li>
-                <li class="tags__name">#Travel</li>
-                <li class="tags__name">#Sport</li>
-                <li class="tags__name">#Animals</li>
-                <li class="tags__name">#Events</li>
+                <li class="tags__name" id="portrait" onclick="displayPhotographersByTags('portrait')">#Portrait</li>
+                <li class="tags__name" id="art" onclick="displayPhotographersByTags('art')">#Art</li>
+                <li class="tags__name" id="fashion" onclick="displayPhotographersByTags('fashion')">#Fashion</li>
+                <li class="tags__name" id="architecture" onclick="displayPhotographersByTags('architecture')">#Architecture</li>
+                <li class="tags__name" id="travel" onclick="displayPhotographersByTags('travel')">#Travel</li>
+                <li class="tags__name" id="sport" onclick="displayPhotographersByTags('sport')">#Sport</li>
+                <li class="tags__name" id="animals" onclick="displayPhotographersByTags('animals')">#Animals</li>
+                <li class="tags__name" id="events" onclick="displayPhotographersByTags('events')">#Events</li>
             </ul>
         </nav>
     </header>
