@@ -2,6 +2,8 @@
 const dropdownMenu = document.querySelector('.dropdown');
 const dropdownLink = document.querySelector('.filter-dropdown-link');
 const likesTotal = document.getElementById('info-stat__likes');
+const carousel = document.getElementById('carousel');
+const carouselContainer = document.getElementById('carousel__container');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -126,7 +128,7 @@ function displayPhotographerGrid (array) {
         </article>`
         likesSum += array[index].likes
     }
-    document.getElementById('info-stat__likes').innerHTML = likesSum + `<i class="fas fa-heart"></i>`
+    likesTotal.innerHTML = likesSum + `<i class="fas fa-heart"></i>`
 }
 
 // Compteur de likes par photos
@@ -143,8 +145,6 @@ function incrementPhotoLikesCount (id) {
 // Carousel
 function openCarousel () {
     let photographerMedia = media
-    let carousel = document.getElementById('carousel')
-    let carouselContainer = document.getElementById('carousel__container')
     carouselContainer.innerHTML = ""
     carouselContainer.style.transform = 'translateX(0%)'
     carousel.style.display = "block"
@@ -157,24 +157,22 @@ function openCarousel () {
         <figure>`
     }
     let ratio = photographerMedia.length  
-    document.getElementById('carousel__container').style.width = (ratio * 100) + "%"
+    carouselContainer.style.width = (ratio * 100) + "%"
     document.querySelectorAll('.carousel__item').forEach(elt => elt.style.width = 100 / ratio + "%")
 }
 
 function closeCarousel () {
-    document.getElementById('carousel').style.display = "none"
+    carousel.style.display = "none"
 }
 
 function nextCarousel () {
     let photographerMedia = media
-    let carouselContainer = document.getElementById('carousel__container')
     let translateX = -100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
 
 function prevCarousel () {
     let photographerMedia = media
-    let carouselContainer = document.getElementById('carousel__container')
     let translateX = 100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
