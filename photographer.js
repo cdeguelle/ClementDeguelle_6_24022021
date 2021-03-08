@@ -1,6 +1,9 @@
 // DOM Elements
 const dropdownMenu = document.querySelector('.dropdown');
 const dropdownLink = document.querySelector('.filter-dropdown-link');
+const dropdownPopularity = document.getElementById('popularity');
+const dropdownDate = document.getElementById('date');
+const dropdownTitle = document.getElementById('title');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -70,22 +73,54 @@ function displayPhotographerInfo (photographer) {
     }
 }
 
+// Tri du menu déroulant 
+function sortByPopularity () {
+    let photographerMediaLikes = media
+    photographerMediaLikes.sort((a, b) => a.likes - b.likes)
+    console.log(photographerMediaLikes)
+    displayPhotographerGrid(photographerMediaLikes)
+    document.getElementById('chevron__popularity').style.color = "white"
+    document.getElementById('chevron__date').style.color = "#901C1C"
+    document.getElementById('chevron__title').style.color = "#901C1C"
+}
+
+function sortByDate () {
+    let photographerMediaDate = media
+    photographerMediaDate.sort((a, b) => new Date(a.date) - new Date(b.date))
+    console.log(photographerMediaDate) 
+    displayPhotographerGrid(photographerMediaDate)
+    document.getElementById('chevron__popularity').style.color = "#901C1C"
+    document.getElementById('chevron__date').style.color = "white"
+    document.getElementById('chevron__title').style.color = "#901C1C"
+}
+
+function sortByTitle () {
+    let photographerMediaTitle = media
+    photographerMediaTitle.sort((a, b) => a.description > b.description)
+    console.log(photographerMediaTitle) 
+    displayPhotographerGrid(photographerMediaTitle)
+    document.getElementById('chevron__popularity').style.color = "#901C1C"
+    document.getElementById('chevron__date').style.color = "#901C1C"
+    document.getElementById('chevron__title').style.color = "white"
+}
+
 // Remplissage dynamique de la grille de photos
-function displayPhotographerGrid (photographerMedia) {
-    let photographerGrid = document.querySelector('.photo-grid');
-    for (let index = 0; index < photographerMedia.length; index++) {
+function displayPhotographerGrid (array) {
+    let photographerGrid = document.querySelector('.photo-grid')
+    photographerGrid.innerHTML = ""
+    for (let index = 0; index < array.length; index++) {
         photographerGrid.innerHTML += `
         <article class="photo-grid__picture">
             <figure class="photo-grid__link" onclick="openCarousel()">
-                ${photographerMedia[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].image}" alt="${photographerMedia[index].description}" class="photo">` : ''}
-                ${photographerMedia[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].video}" alt="${photographerMedia[index].description}" class="video" type="video/mp4"></video>` : ''}
+                ${array[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${array[index].name}/${array[index].image}" alt="${array[index].description}" class="photo">` : ''}
+                ${array[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${array[index].name}/${array[index].video}" alt="${array[index].description}" class="video" type="video/mp4"></video>` : ''}
             </figure>
             <div class="photo-grid__description">
-                <h2 class="photo__name">${photographerMedia[index].description}</h2>
-                <p class="photo__price">${photographerMedia[index].price} €</p>
+                <h2 class="photo__name">${array[index].description}</h2>
+                <p class="photo__price">${array[index].price} €</p>
                 <p class="photo__like">
-                <span class="photo__like-count" id="photo__like-count-${photographerMedia[index].id}">${photographerMedia[index].likes}</span>
-                <i class="fas fa-heart photo__like-icon" id="photo__like-icon-${photographerMedia[index].id}" onclick="incrementPhotoLikesCount('photo__like-count-${photographerMedia[index].id}')"></i>
+                <span class="photo__like-count" id="photo__like-count-${array[index].id}">${array[index].likes}</span>
+                <i class="fas fa-heart photo__like-icon" id="photo__like-icon-${array[index].id}" onclick="incrementPhotoLikesCount('photo__like-count-${array[index].id}')"></i>
                 </p>
             </div>
         </article>`
@@ -138,9 +173,3 @@ function prevCarousel () {
     let translateX = 100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
-
-
-
-
-
-
