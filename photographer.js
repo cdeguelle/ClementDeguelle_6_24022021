@@ -1,9 +1,7 @@
 // DOM Elements
 const dropdownMenu = document.querySelector('.dropdown');
 const dropdownLink = document.querySelector('.filter-dropdown-link');
-const dropdownPopularity = document.getElementById('popularity');
-const dropdownDate = document.getElementById('date');
-const dropdownTitle = document.getElementById('title');
+const likesTotal = document.getElementById('info-stat__likes');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -67,6 +65,7 @@ function displayPhotographerInfo (photographer) {
         <button id="contact">Contactez moi</button>
         <img src="./public/img/Sample_Photos/Photographers_ID_Photos/${photographer.portrait}" alt="${photographer.name}" class="photographer__picture photographer__picture--profile">
     </div>`;
+    document.getElementById('info-stat__price').innerHTML = `${photographer.price}€/jour`
     var tagsContainerProfile = document.querySelector('.photographer__tags--profile');
     for (let i = 0; i < photographer.tags.length; i++) {
         tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile">#${photographer.tags[i]}</li>`
@@ -108,6 +107,7 @@ function sortByTitle () {
 function displayPhotographerGrid (array) {
     let photographerGrid = document.querySelector('.photo-grid')
     photographerGrid.innerHTML = ""
+    let likesSum = 0
     for (let index = 0; index < array.length; index++) {
         photographerGrid.innerHTML += `
         <article class="photo-grid__picture">
@@ -124,15 +124,20 @@ function displayPhotographerGrid (array) {
                 </p>
             </div>
         </article>`
+        likesSum += array[index].likes
     }
+    document.getElementById('info-stat__likes').innerHTML = likesSum + `<i class="fas fa-heart"></i>`
 }
 
 // Compteur de likes par photos
 function incrementPhotoLikesCount (id) {
     let elem = document.getElementById(id)
     let likes = parseInt(elem.textContent, 10)
+    let likesTotalNumber = parseInt(likesTotal.textContent, 10)
     likes++
+    likesTotalNumber++
     elem.innerHTML = likes
+    likesTotal.innerHTML = likesTotalNumber + `<i class="fas fa-heart"></i>`
 }
 
 // Carousel

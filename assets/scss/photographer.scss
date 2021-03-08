@@ -338,3 +338,26 @@ video {
         }
     }
 }
+
+#info-stat {
+    display: none;
+    @include desktop {
+        position: fixed;
+        bottom: 0;
+        right: 20px;
+        background-color: #DB8876;
+        width: 375px;
+        height: 80px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.5em;
+        &__likes {
+            & i {
+                margin-left: 10px;
+            }
+        }
+    }
+}
