@@ -153,6 +153,9 @@ header {
     left: 200px;
     top: 490px;
     z-index: 10;
+    &__icon {
+        color: #901C1C;
+    }
     & li {
         list-style: none;
         border-bottom: 1px solid white;
@@ -164,9 +167,10 @@ header {
         & a {
             text-decoration: none;
             color: #ffffff;
+            cursor: pointer;
         }
     }
-    &__last-link {
+    &__link-last {
         border-bottom: none !important;
     }
 }
