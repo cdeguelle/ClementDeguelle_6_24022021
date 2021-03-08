@@ -27,7 +27,7 @@ var photographerID = parseInt(new URLSearchParams(window.location.search).get('p
 
 // Requête objet JSON
 var request = new XMLHttpRequest();
-var media = [];
+var photographerMedia = [];
 
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -36,8 +36,7 @@ request.onreadystatechange = function() {
         displayPhotographerInfo(response.photographers.find(photographer => {
             return photographer.id === photographerID
         }))
-        media = response.media.filter(filterById)
-        let photographerMedia = media
+        photographerMedia = response.media.filter(filterById)
         displayPhotographerGrid(photographerMedia)
     }
 };
@@ -76,7 +75,7 @@ function displayPhotographerInfo (photographer) {
 
 // Tri du menu déroulant 
 function sortByPopularity () {
-    let photographerMediaLikes = media
+    let photographerMediaLikes = photographerMedia
     photographerMediaLikes.sort((a, b) => a.likes - b.likes)
     console.log(photographerMediaLikes)
     displayPhotographerGrid(photographerMediaLikes)
@@ -86,7 +85,7 @@ function sortByPopularity () {
 }
 
 function sortByDate () {
-    let photographerMediaDate = media
+    let photographerMediaDate = photographerMedia
     photographerMediaDate.sort((a, b) => new Date(a.date) - new Date(b.date))
     console.log(photographerMediaDate) 
     displayPhotographerGrid(photographerMediaDate)
@@ -96,7 +95,7 @@ function sortByDate () {
 }
 
 function sortByTitle () {
-    let photographerMediaTitle = media
+    let photographerMediaTitle = photographerMedia
     photographerMediaTitle.sort((a, b) => a.description > b.description)
     console.log(photographerMediaTitle) 
     displayPhotographerGrid(photographerMediaTitle)
@@ -144,7 +143,6 @@ function incrementPhotoLikesCount (id) {
 
 // Carousel
 function openCarousel () {
-    let photographerMedia = media
     carouselContainer.innerHTML = ""
     carouselContainer.style.transform = 'translateX(0%)'
     carousel.style.display = "block"
@@ -166,13 +164,11 @@ function closeCarousel () {
 }
 
 function nextCarousel () {
-    let photographerMedia = media
     let translateX = -100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
 
 function prevCarousel () {
-    let photographerMedia = media
     let translateX = 100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }

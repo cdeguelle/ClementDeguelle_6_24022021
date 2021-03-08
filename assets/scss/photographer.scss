@@ -310,8 +310,10 @@ video {
         align-items: center;
         position: fixed;
         height: 100%;
+        top: 50px;
         @include desktop {
             margin-left: -450px;
+            top: 0;
         }
     }
 }
@@ -319,19 +321,23 @@ video {
 .carousel__item {
     & img {
         object-fit: contain;
+        width: 250px;
         @include desktop {
             width: 900px;
             height: 600px;
         }
     }
     & h2 {
-        width: 900px;
         text-align: center;
+        width: 250px;
+        @include desktop {
+            width: 900px;
+        }
     }
     & video {
-        width: 325px;
+        width: 300px;
         height: 80%;
-        margin-left: -10%;
+        margin-left: -25px;
         @include desktop {
             width: 700px;
             margin-left: 100px;
