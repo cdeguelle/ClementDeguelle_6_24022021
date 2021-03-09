@@ -4,6 +4,9 @@ const dropdownLink = document.querySelector('.filter-dropdown-link');
 const likesTotal = document.getElementById('info-stat__likes');
 const carousel = document.getElementById('carousel');
 const carouselContainer = document.getElementById('carousel__container');
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modal__close');
+const modalTitleName = document.getElementById('modal__title--name');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -63,10 +66,11 @@ function displayPhotographerInfo (photographer) {
             <p class="photographer__description photographer__description--profile">${photographer.tagline}</p>
             <ul class="photographer__tags photographer__tags--profile"></ul>
         </div>
-        <button id="contact">Contactez moi</button>
+        <button id="contact" onclick="launchModal()">Contactez moi</button>
         <img src="./public/img/Sample_Photos/Photographers_ID_Photos/${photographer.portrait}" alt="${photographer.name}" class="photographer__picture photographer__picture--profile">
     </div>`;
     document.getElementById('info-stat__price').innerHTML = `${photographer.price}€/jour`
+    modalTitleName.innerHTML = photographer.name 
     var tagsContainerProfile = document.querySelector('.photographer__tags--profile');
     for (let i = 0; i < photographer.tags.length; i++) {
         tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile">#${photographer.tags[i]}</li>`
@@ -171,4 +175,15 @@ function nextCarousel () {
 function prevCarousel () {
     let translateX = 100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
+}
+
+// Modal form
+modalClose.addEventListener('click', closeModal)
+
+function launchModal () {
+    modal.style.display = "block"
+}
+
+function closeModal () {
+    modal.style.display = "none"
 }

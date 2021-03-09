@@ -58,7 +58,35 @@
             <span id="carousel__next" onclick="nextCarousel()"><i class="fas fa-arrow-right"></i></span>
             <span id="carousel__prev" onclick="prevCarousel()"><i class="fas fa-arrow-left"></i></span>
             <div id="carousel__container"></div>
-       </div>
+        </div>
+
+        <div id="modal">
+            <div id="modal__content">
+                <h2 id="modal__title">Contactez-moi<span id="modal__close"><i class="fas fa-times"></i></span></h2>
+                <h2 id="modal__title--name"></h2>
+                <div id="modal__body">
+                    <form action="photographer.html" id="modal__form" name="contact" method="POST" novalidate>
+                        <div id="modal__data--first-name" class="modal__data" data-error="Veuillez entrer un prénom comportant 2 caractères ou plus" data-error-visible="false">
+                            <label for="first">Prénom</label>
+                            <input type="text" class="modal__input" id="first" name="first">
+                        </div>
+                        <div id="modal__data--last-name" class="modal__data" data-error="Veuillez entrer un prénom comportant 2 caractères ou plus" data-error-visible="false">
+                            <label for="last">Nom</label>
+                            <input type="text" class="modal__input" id="last" name="last">
+                        </div>
+                        <div id="modal__data--email" class="modal__data" data-error="Veuillez entrer une adresse email valide" data-error-visible="false">
+                            <label for="email">Email</label>
+                            <input type="text" class="modal__input" id="email" name="email">
+                        </div>
+                        <div id="modal__data--textarea" class="modal__data">
+                            <label for="textarea">Votre message</label>
+                            <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea>
+                        </div>
+                        <input id="modal__submit" type="submit" value="Envoyer" />
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <div id="info-stat">
             <span id="info-stat__likes"></span>
