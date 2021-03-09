@@ -1,9 +1,13 @@
 // DOM Elements
 const dropdownMenu = document.querySelector('.dropdown');
 const dropdownLink = document.querySelector('.filter-dropdown-link');
-const dropdownPopularity = document.getElementById('popularity');
-const dropdownDate = document.getElementById('date');
-const dropdownTitle = document.getElementById('title');
+const likesTotal = document.getElementById('info-stat__likes');
+const carousel = document.getElementById('carousel');
+const carouselContainer = document.getElementById('carousel__container');
+const modal = document.getElementById('modal');
+const modalClose = document.getElementById('modal__close');
+const modalTitleName = document.getElementById('modal__title--name');
+const modalSubmit = document.getElementById('modal__submit');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -27,7 +31,7 @@ var photographerID = parseInt(new URLSearchParams(window.location.search).get('p
 
 // Requête objet JSON
 var request = new XMLHttpRequest();
-var media = [];
+var photographerMedia = [];
 
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -36,8 +40,7 @@ request.onreadystatechange = function() {
         displayPhotographerInfo(response.photographers.find(photographer => {
             return photographer.id === photographerID
         }))
-        media = response.media.filter(filterById)
-        let photographerMedia = media
+        photographerMedia = response.media.filter(filterById)
         displayPhotographerGrid(photographerMedia)
     }
 };
@@ -64,9 +67,11 @@ function displayPhotographerInfo (photographer) {
             <p class="photographer__description photographer__description--profile">${photographer.tagline}</p>
             <ul class="photographer__tags photographer__tags--profile"></ul>
         </div>
-        <button id="contact">Contactez moi</button>
+        <button id="contact" onclick="launchModal()">Contactez moi</button>
         <img src="./public/img/Sample_Photos/Photographers_ID_Photos/${photographer.portrait}" alt="${photographer.name}" class="photographer__picture photographer__picture--profile">
     </div>`;
+    document.getElementById('info-stat__price').innerHTML = `${photographer.price}€/jour`
+    modalTitleName.innerHTML = photographer.name 
     var tagsContainerProfile = document.querySelector('.photographer__tags--profile');
     for (let i = 0; i < photographer.tags.length; i++) {
         tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile">#${photographer.tags[i]}</li>`
@@ -75,7 +80,7 @@ function displayPhotographerInfo (photographer) {
 
 // Tri du menu déroulant 
 function sortByPopularity () {
-    let photographerMediaLikes = media
+    let photographerMediaLikes = photographerMedia
     photographerMediaLikes.sort((a, b) => a.likes - b.likes)
     console.log(photographerMediaLikes)
     displayPhotographerGrid(photographerMediaLikes)
@@ -85,7 +90,7 @@ function sortByPopularity () {
 }
 
 function sortByDate () {
-    let photographerMediaDate = media
+    let photographerMediaDate = photographerMedia
     photographerMediaDate.sort((a, b) => new Date(a.date) - new Date(b.date))
     console.log(photographerMediaDate) 
     displayPhotographerGrid(photographerMediaDate)
@@ -95,7 +100,7 @@ function sortByDate () {
 }
 
 function sortByTitle () {
-    let photographerMediaTitle = media
+    let photographerMediaTitle = photographerMedia
     photographerMediaTitle.sort((a, b) => a.description > b.description)
     console.log(photographerMediaTitle) 
     displayPhotographerGrid(photographerMediaTitle)
@@ -108,6 +113,7 @@ function sortByTitle () {
 function displayPhotographerGrid (array) {
     let photographerGrid = document.querySelector('.photo-grid')
     photographerGrid.innerHTML = ""
+    let likesSum = 0
     for (let index = 0; index < array.length; index++) {
         photographerGrid.innerHTML += `
         <article class="photo-grid__picture">
@@ -124,22 +130,24 @@ function displayPhotographerGrid (array) {
                 </p>
             </div>
         </article>`
+        likesSum += array[index].likes
     }
+    likesTotal.innerHTML = likesSum + `<i class="fas fa-heart"></i>`
 }
 
 // Compteur de likes par photos
 function incrementPhotoLikesCount (id) {
     let elem = document.getElementById(id)
     let likes = parseInt(elem.textContent, 10)
+    let likesTotalNumber = parseInt(likesTotal.textContent, 10)
     likes++
+    likesTotalNumber++
     elem.innerHTML = likes
+    likesTotal.innerHTML = likesTotalNumber + `<i class="fas fa-heart"></i>`
 }
 
 // Carousel
 function openCarousel () {
-    let photographerMedia = media
-    let carousel = document.getElementById('carousel')
-    let carouselContainer = document.getElementById('carousel__container')
     carouselContainer.innerHTML = ""
     carouselContainer.style.transform = 'translateX(0%)'
     carousel.style.display = "block"
@@ -152,24 +160,33 @@ function openCarousel () {
         <figure>`
     }
     let ratio = photographerMedia.length  
-    document.getElementById('carousel__container').style.width = (ratio * 100) + "%"
+    carouselContainer.style.width = (ratio * 100) + "%"
     document.querySelectorAll('.carousel__item').forEach(elt => elt.style.width = 100 / ratio + "%")
 }
 
 function closeCarousel () {
-    document.getElementById('carousel').style.display = "none"
+    carousel.style.display = "none"
 }
 
 function nextCarousel () {
-    let photographerMedia = media
-    let carouselContainer = document.getElementById('carousel__container')
     let translateX = -100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
 
 function prevCarousel () {
-    let photographerMedia = media
-    let carouselContainer = document.getElementById('carousel__container')
     let translateX = 100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
+}
+
+// Modal form
+modalClose.addEventListener('click', closeModal)
+modalSubmit.addEventListener('click', closeModal)
+
+function launchModal () {
+    modal.style.display = "block"
+}
+
+function closeModal (e) {
+    e.preventDefault()
+    modal.style.display = "none"
 }
