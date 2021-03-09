@@ -7,6 +7,7 @@ const carouselContainer = document.getElementById('carousel__container');
 const modal = document.getElementById('modal');
 const modalClose = document.getElementById('modal__close');
 const modalTitleName = document.getElementById('modal__title--name');
+const modalSubmit = document.getElementById('modal__submit');
 
 // Menu déroulant 
 function toggleNavbar() {
@@ -179,11 +180,13 @@ function prevCarousel () {
 
 // Modal form
 modalClose.addEventListener('click', closeModal)
+modalSubmit.addEventListener('click', closeModal)
 
 function launchModal () {
     modal.style.display = "block"
 }
 
-function closeModal () {
+function closeModal (e) {
+    e.preventDefault()
     modal.style.display = "none"
 }
