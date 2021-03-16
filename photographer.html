@@ -15,7 +15,7 @@
 <body>
     <header class="header" role="banner">
         <a href="./index.html" id="fisheye-logo">
-            <img src="./public/img/Sample_Photos/Logo.png" alt="Logo de FishEye">
+            <img src="./public/img/Sample_Photos/Logo.png" alt="FishEye Home page">
         </a>
     </header>
 
@@ -24,26 +24,22 @@
            
         </section>
         <div class="filter">
-            <a class="filter-dropdown-link" aria-haspopup="true" aria-expanded="false" href="#">
-                <span class="filter-dropdown-link-content">
-                    Trier par
-                </span>
-            </a>
-            <ul class="dropdown">
-                <li>
-                    <a id="popularity" onclick="sortByPopularity()">
+            <button id="dropdown-button" class="filter__dropdown-link" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="Order by" aria-activedescendant="mi3" aria-controls="dropdown-list" href="#">Trier par</label>
+            <ul role="listbox" id="dropdown-list" class="dropdown" aria-activedescendant="" aria-selected="" aria-labelledby="dropdown-button">
+                <li role="none">
+                    <a role="menuitem" id="popularity" onclick="sortByPopularity()">
                         Popularité
                     </a>
                     <i id="chevron__popularity" class="fas fa-chevron-up dropdown__icon"></i>
                 </li>
-                <li>
-                    <a id="date" onclick="sortByDate()">
+                <li role="none">
+                    <a role="menuitem" id="date" onclick="sortByDate()">
                         Date
                     </a>
                     <i id="chevron__date" class="fas fa-chevron-up dropdown__icon"></i>
                 </li>
-                <li class="dropdown__link-last">
-                    <a id="title" onclick="sortByTitle()">
+                <li role="none" class="dropdown__link-last">
+                    <a role="menuitem" id="title" onclick="sortByTitle()">
                         Titre
                     </a>
                     <i id="chevron__title" class="fas fa-chevron-up dropdown__icon"></i>
@@ -67,19 +63,19 @@
                 <div id="modal__body">
                     <form action="photographer.html" id="modal__form" name="contact" method="POST">
                         <div id="modal__data--first-name" class="modal__data" data-error="Veuillez entrer un prénom comportant 2 caractères ou plus" data-error-visible="false">
-                            <label for="first">Prénom</label>
+                            <label class="modal__label" for="first">Prénom</label>
                             <input type="text" class="modal__input" id="first" name="first">
                         </div>
                         <div id="modal__data--last-name" class="modal__data" data-error="Veuillez entrer un prénom comportant 2 caractères ou plus" data-error-visible="false">
-                            <label for="last">Nom</label>
+                            <label class="modal__label" for="last">Nom</label>
                             <input type="text" class="modal__input" id="last" name="last">
                         </div>
                         <div id="modal__data--email" class="modal__data" data-error="Veuillez entrer une adresse email valide" data-error-visible="false">
-                            <label for="email">Email</label>
+                            <label class="modal__label" for="email">Email</label>
                             <input type="text" class="modal__input" id="email" name="email">
                         </div>
                         <div id="modal__data--textarea" class="modal__data">
-                            <label for="textarea">Votre message</label>
+                            <label class="modal__label" for="textarea">Votre message</label>
                             <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea>
                         </div>
                         <input id="modal__submit" type="submit" value="Envoyer" />

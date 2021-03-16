@@ -141,6 +141,12 @@ header {
             text-decoration: none;
             color: #000000;
         }
+        &__dropdown-link {
+            cursor: pointer;
+            border: none;
+            background-color: #ffffff;
+            font-size: 1.2em;
+        }
     }
 }
 
@@ -151,7 +157,7 @@ header {
     padding: 0 10px;
     position: absolute;
     left: 200px;
-    top: 490px;
+    top: 475px;
     z-index: 10;
     &__icon {
         color: #901C1C;
@@ -446,13 +452,12 @@ video {
         height: 30px;
         margin-bottom: 5px;
     }
-}
-
-label {
-    font-size: 1.5em;
-    font-weight: 400;
-    display: inline-block;
-    margin-bottom: 10px;
+    &__label {
+        font-size: 1.5em;
+        font-weight: 400;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
 }
 
 textarea {

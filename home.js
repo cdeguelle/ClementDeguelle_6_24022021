@@ -25,14 +25,14 @@ function displayPhotographers (photographers) {
                 </figure>
                 <h2 class="photographer__name">${photographers[index].name}</h2>
             </a>
-            <p class="photographer__city">${photographers[index].city}, ${photographers[index].country}</p><br>
-            <p class="photographer__description">${photographers[index].tagline}</p><br>
-            <p class="photographer__price">${photographers[index].price}€/jour</p><br>
+            <p class="photographer__city">${photographers[index].city}, ${photographers[index].country}</p>
+            <p class="photographer__description">${photographers[index].tagline}</p>
+            <p class="photographer__price">${photographers[index].price}€/jour</p>
             <ul class="photographer__tags" id="photographer-tags-${photographers[index].id}"></ul>
         </article>`;
         var tagsContainer = document.querySelector('#photographer-tags-' + photographers[index].id);
         for (let i = 0; i < photographers[index].tags.length; i++) {
-            tagsContainer.innerHTML += `<li class="tags__name tags__${photographers[index].id}">#${photographers[index].tags[i]}</li>`        
+            tagsContainer.innerHTML += `<li class="tags__name tags__${photographers[index].id}" onclick="displayPhotographersByTags('${photographers[index].tags[i]}')"><span class="hidden">Tag ${photographers[index].tags[i]}</span>#${photographers[index].tags[i]}</li>`        
         }
     } 
 }

@@ -1,6 +1,6 @@
 // DOM Elements
 const dropdownMenu = document.querySelector('.dropdown');
-const dropdownLink = document.querySelector('.filter-dropdown-link');
+const dropdownLink = document.querySelector('.filter__dropdown-link');
 const likesTotal = document.getElementById('info-stat__likes');
 const carousel = document.getElementById('carousel');
 const carouselContainer = document.getElementById('carousel__container');
@@ -32,11 +32,13 @@ var photographerID = parseInt(new URLSearchParams(window.location.search).get('p
 // Requête objet JSON
 var request = new XMLHttpRequest();
 var photographerMedia = [];
+var listOfphotographers = [];
 
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         var response = JSON.parse(this.responseText);
         console.log(response);
+        listOfphotographers = response.photographers
         displayPhotographerInfo(response.photographers.find(photographer => {
             return photographer.id === photographerID
         }))
@@ -67,15 +69,31 @@ function displayPhotographerInfo (photographer) {
             <p class="photographer__description photographer__description--profile">${photographer.tagline}</p>
             <ul class="photographer__tags photographer__tags--profile"></ul>
         </div>
-        <button id="contact" onclick="launchModal()">Contactez moi</button>
+        <button id="contact" aria-label="Contact me" onclick="launchModal()">Contactez moi</button>
         <img src="./public/img/Sample_Photos/Photographers_ID_Photos/${photographer.portrait}" alt="${photographer.name}" class="photographer__picture photographer__picture--profile">
     </div>`;
     document.getElementById('info-stat__price').innerHTML = `${photographer.price}€/jour`
     modalTitleName.innerHTML = photographer.name 
     var tagsContainerProfile = document.querySelector('.photographer__tags--profile');
     for (let i = 0; i < photographer.tags.length; i++) {
-        tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile">#${photographer.tags[i]}</li>`
+        tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile" onclick="displayPhotographersByTags('${photographer.tags[i]}')"><a href="./index.html"></a><span class="hidden">Tag ${photographer.tags[i]}</span>#${photographer.tags[i]}</li>`
     }
+}
+
+// Redirection vers la page d'acceuil au clic sur un tag + filtre en fonction du tag
+function displayPhotographersByTags(id) {
+    document.location.href = "./index.html"
+    let photographers = listOfphotographers
+    let tag = id
+    for (let index = 0; index < photographers.length; index++) {
+        let tagsContent = photographers[index].tags
+        let photographer = document.getElementById(photographers[index].id)
+        if (tagsContent.includes(tag)) {
+            photographer.style.display = "flex"
+        } else {
+            photographer.style.display = "none"
+        }
+    }   
 }
 
 // Tri du menu déroulant 
@@ -126,7 +144,7 @@ function displayPhotographerGrid (array) {
                 <p class="photo__price">${array[index].price} €</p>
                 <p class="photo__like">
                 <span class="photo__like-count" id="photo__like-count-${array[index].id}">${array[index].likes}</span>
-                <i class="fas fa-heart photo__like-icon" id="photo__like-icon-${array[index].id}" onclick="incrementPhotoLikesCount('photo__like-count-${array[index].id}')"></i>
+                <i class="fas fa-heart photo__like-icon" id="photo__like-icon-${array[index].id}" aria-label="likes" onclick="incrementPhotoLikesCount('photo__like-count-${array[index].id}')"></i>
                 </p>
             </div>
         </article>`
