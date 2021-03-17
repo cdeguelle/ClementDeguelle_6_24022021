@@ -27,12 +27,12 @@ dropdownLink.addEventListener('click', function(e) {
 
 // PAGE DYNAMIQUE \\
 // Lecture de photographerID dans l'URL
-var photographerID = parseInt(new URLSearchParams(window.location.search).get('photographerID'), 10);
+let photographerID = parseInt(new URLSearchParams(window.location.search).get('photographerID'), 10);
 
 // Requête objet JSON
-var request = new XMLHttpRequest();
-var photographerMedia = [];
-var listOfphotographers = [];
+let request = new XMLHttpRequest();
+let photographerMedia = [];
+let listOfphotographers = [];
 
 request.onreadystatechange = function() {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -136,8 +136,8 @@ function displayPhotographerGrid (array) {
         photographerGrid.innerHTML += `
         <article class="photo-grid__picture">
             <figure class="photo-grid__link" onclick="openCarousel()">
-                ${array[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${array[index].name}/${array[index].image}" alt="${array[index].description}" class="photo">` : ''}
-                ${array[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${array[index].name}/${array[index].video}" alt="${array[index].description}" class="video" type="video/mp4"></video>` : ''}
+                ${array[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${array[index].name}/${array[index].image}" alt="${array[index].description}, vue rapprochée" class="photo">` : ''}
+                ${array[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${array[index].name}/${array[index].video}" alt="${array[index].description}, vue rapprochée" class="video" type="video/mp4"></video>` : ''}
             </figure>
             <div class="photo-grid__description">
                 <h2 class="photo__name">${array[index].description}</h2>
@@ -171,7 +171,7 @@ function openCarousel () {
     carousel.style.display = "block"
     for (let index = 0; index < photographerMedia.length; index++) {
         carouselContainer.innerHTML += `
-        <figure class="carousel__item">
+        <figure class="carousel__item" aria-label="image vue rapprochée">
             ${photographerMedia[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].image}" alt="${photographerMedia[index].description}" class="carousel__photo">` : ''}
             ${photographerMedia[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${photographerMedia[index].name}/${photographerMedia[index].video}" alt="${photographerMedia[index].description}" class="carousel__video" type="video/mp4"></video>` : ''}
             <h2 class="photo__name--carousel">${photographerMedia[index].description}</h2>
