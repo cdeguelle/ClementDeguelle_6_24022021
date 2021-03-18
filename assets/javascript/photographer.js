@@ -76,24 +76,13 @@ function displayPhotographerInfo (photographer) {
     modalTitleName.innerHTML = photographer.name 
     var tagsContainerProfile = document.querySelector('.photographer__tags--profile');
     for (let i = 0; i < photographer.tags.length; i++) {
-        tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile" onclick="displayPhotographersByTags('${photographer.tags[i]}')"><a href="./index.html"></a><span class="hidden">Tag ${photographer.tags[i]}</span>#${photographer.tags[i]}</li>`
+        tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile" onclick="displayPhotographersByTags('${photographer.tags[i]}')"><a href=""></a><span class="hidden">Tag ${photographer.tags[i]}</span>#${photographer.tags[i]}</li>`
     }
 }
 
 // Redirection vers la page d'acceuil au clic sur un tag + filtre en fonction du tag
 function displayPhotographersByTags(id) {
-    document.location.href = "./index.html"
-    let photographers = listOfphotographers
-    let tag = id
-    for (let index = 0; index < photographers.length; index++) {
-        let tagsContent = photographers[index].tags
-        let photographer = document.getElementById(photographers[index].id)
-        if (tagsContent.includes(tag)) {
-            photographer.style.display = "flex"
-        } else {
-            photographer.style.display = "none"
-        }
-    }   
+    document.location.href = "./index.html?tag=" + id  
 }
 
 // Tri du menu déroulant 

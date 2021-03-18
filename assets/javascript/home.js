@@ -1,3 +1,6 @@
+// Lecture du tag depuis la page du photographe
+let tagID = new URLSearchParams(window.location.search).get('tag')
+
 // Requête objet JSON
 var request = new XMLHttpRequest();
 var listOfphotographers = [];
@@ -8,6 +11,9 @@ request.onreadystatechange = function() {
         console.log(response);
         displayPhotographers(response.photographers);
         listOfphotographers = response.photographers
+        if (tagID != null) {
+            displayPhotographersByTags(tagID)
+        }
     }
 };
 request.open("GET", "data.json");
@@ -40,11 +46,10 @@ function displayPhotographers (photographers) {
 // Affichage des photographes par tags
 function displayPhotographersByTags (id) {
     let photographers = listOfphotographers
-    let tag = id
     for (let index = 0; index < photographers.length; index++) {
         let tagsContent = photographers[index].tags
         let photographer = document.getElementById(photographers[index].id)
-        if (tagsContent.includes(tag)) {
+        if (tagsContent.includes(id)) {
             photographer.style.display = "flex"
         } else {
             photographer.style.display = "none"
