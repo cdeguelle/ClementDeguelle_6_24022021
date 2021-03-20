@@ -1,9 +1,15 @@
 // DOM Elements
 const dropdownMenu = document.querySelector('.dropdown');
 const dropdownLink = document.querySelector('.filter__dropdown-link');
+const dropdownPopularity = document.getElementById('popularity');
+const dropdownDate = document.getElementById('date');
+const dropdownTitle = document.getElementById('title');
 const likesTotal = document.getElementById('info-stat__likes');
 const carousel = document.getElementById('carousel');
 const carouselContainer = document.getElementById('carousel__container');
+const carouselClose = document.getElementById('carousel__close');
+const carouselNext = document.getElementById('carousel__next');
+const carouselPrev = document.getElementById('carousel__prev');
 const modal = document.getElementById('modal');
 const modalClose = document.getElementById('modal__close');
 const modalTitleName = document.getElementById('modal__title--name');
@@ -86,34 +92,24 @@ function displayPhotographersByTags(id) {
 }
 
 // Tri du menu déroulant 
-function sortByPopularity () {
-    let photographerMediaLikes = photographerMedia
-    photographerMediaLikes.sort((a, b) => a.likes - b.likes)
-    console.log(photographerMediaLikes)
-    displayPhotographerGrid(photographerMediaLikes)
-    document.getElementById('chevron__popularity').style.color = "white"
-    document.getElementById('chevron__date').style.color = "#901C1C"
-    document.getElementById('chevron__title').style.color = "#901C1C"
-}
-
-function sortByDate () {
-    let photographerMediaDate = photographerMedia
-    photographerMediaDate.sort((a, b) => new Date(a.date) - new Date(b.date))
-    console.log(photographerMediaDate) 
-    displayPhotographerGrid(photographerMediaDate)
-    document.getElementById('chevron__popularity').style.color = "#901C1C"
-    document.getElementById('chevron__date').style.color = "white"
-    document.getElementById('chevron__title').style.color = "#901C1C"
-}
-
-function sortByTitle () {
-    let photographerMediaTitle = photographerMedia
-    photographerMediaTitle.sort((a, b) => a.description > b.description)
-    console.log(photographerMediaTitle) 
-    displayPhotographerGrid(photographerMediaTitle)
-    document.getElementById('chevron__popularity').style.color = "#901C1C"
-    document.getElementById('chevron__date').style.color = "#901C1C"
-    document.getElementById('chevron__title').style.color = "white"
+function sortBy (id) {
+    if (id === "popularity") {
+        photographerMedia.sort((a, b) => a.likes - b.likes)
+        document.getElementById('chevron__popularity').style.color = "white"
+        document.getElementById('chevron__date').style.color = "#901C1C"
+        document.getElementById('chevron__title').style.color = "#901C1C"
+    } else if (id === "date") {
+        photographerMedia.sort((a, b) => new Date(a.date) - new Date(b.date))
+        document.getElementById('chevron__popularity').style.color = "#901C1C"
+        document.getElementById('chevron__date').style.color = "white"
+        document.getElementById('chevron__title').style.color = "#901C1C"
+    } else if (id === "title") {
+        photographerMedia.sort((a, b) => a.description > b.description)
+        document.getElementById('chevron__popularity').style.color = "#901C1C"
+        document.getElementById('chevron__date').style.color = "#901C1C"
+        document.getElementById('chevron__title').style.color = "white"
+    }
+    displayPhotographerGrid(photographerMedia)
 }
 
 // Remplissage dynamique de la grille de photos
@@ -124,7 +120,7 @@ function displayPhotographerGrid (array) {
     for (let index = 0; index < array.length; index++) {
         photographerGrid.innerHTML += `
         <article class="photo-grid__picture">
-            <figure class="photo-grid__link" onclick="openCarousel()">
+            <figure class="photo-grid__link" onclick="openCarousel(${index})">
                 ${array[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${array[index].name}/${array[index].image}" alt="${array[index].description}, vue rapprochée" class="photo">` : ''}
                 ${array[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${array[index].name}/${array[index].video}" alt="${array[index].description}, vue rapprochée" class="video" type="video/mp4"></video>` : ''}
             </figure>
@@ -154,9 +150,10 @@ function incrementPhotoLikesCount (id) {
 }
 
 // Carousel
-function openCarousel () {
+function openCarousel (index) {
     carouselContainer.innerHTML = ""
-    carouselContainer.style.transform = 'translateX(0%)'
+    let translateX = -100 / photographerMedia.length
+    carouselContainer.style.transform = 'translateX(' + index * translateX + '%)'
     carousel.style.display = "block"
     for (let index = 0; index < photographerMedia.length; index++) {
         carouselContainer.innerHTML += `
@@ -170,6 +167,23 @@ function openCarousel () {
     carouselContainer.style.width = (ratio * 100) + "%"
     document.querySelectorAll('.carousel__item').forEach(elt => elt.style.width = 100 / ratio + "%")
 }
+
+window.addEventListener('keydown', function (e) {
+    switch (e.key) {
+        case "ArrowLeft":
+          prevCarousel();
+          break;
+        case "ArrowRight":
+          nextCarousel();
+          break;
+        case "Escape":
+          closeCarousel();
+          break;
+        default:
+          return; // Quitter lorsque cela ne gère pas l'événement touche.
+    }
+    e.preventDefault();
+}, true)
 
 function closeCarousel () {
     carousel.style.display = "none"
