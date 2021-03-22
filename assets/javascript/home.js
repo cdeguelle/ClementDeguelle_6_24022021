@@ -1,3 +1,6 @@
+// Lecture du tag depuis la page du photographe
+let tagID = new URLSearchParams(window.location.search).get('tag')
+
 // Requête objet JSON
 var request = new XMLHttpRequest();
 var listOfphotographers = [];
@@ -8,6 +11,9 @@ request.onreadystatechange = function() {
         console.log(response);
         displayPhotographers(response.photographers);
         listOfphotographers = response.photographers
+        if (tagID != null) {
+            displayPhotographersByTags(tagID)
+        }
     }
 };
 request.open("GET", "data.json");
@@ -25,14 +31,14 @@ function displayPhotographers (photographers) {
                 </figure>
                 <h2 class="photographer__name">${photographers[index].name}</h2>
             </a>
-            <p class="photographer__city">${photographers[index].city}, ${photographers[index].country}</p><br>
-            <p class="photographer__description">${photographers[index].tagline}</p><br>
-            <p class="photographer__price">${photographers[index].price}€/jour</p><br>
+            <p class="photographer__city">${photographers[index].city}, ${photographers[index].country}</p>
+            <p class="photographer__description">${photographers[index].tagline}</p>
+            <p class="photographer__price">${photographers[index].price}€/jour</p>
             <ul class="photographer__tags" id="photographer-tags-${photographers[index].id}"></ul>
         </article>`;
         var tagsContainer = document.querySelector('#photographer-tags-' + photographers[index].id);
         for (let i = 0; i < photographers[index].tags.length; i++) {
-            tagsContainer.innerHTML += `<li class="tags__name tags__${photographers[index].id}">#${photographers[index].tags[i]}</li>`        
+            tagsContainer.innerHTML += `<li class="tags__name tags__${photographers[index].id}"><a href="#" onclick="displayPhotographersByTags('${photographers[index].tags[i]}'); event.preventDefault()"><span class="hidden">Tag ${photographers[index].tags[i]}</span>#${photographers[index].tags[i]}</a></li>`        
         }
     } 
 }
@@ -40,11 +46,10 @@ function displayPhotographers (photographers) {
 // Affichage des photographes par tags
 function displayPhotographersByTags (id) {
     let photographers = listOfphotographers
-    let tag = id
     for (let index = 0; index < photographers.length; index++) {
         let tagsContent = photographers[index].tags
         let photographer = document.getElementById(photographers[index].id)
-        if (tagsContent.includes(tag)) {
+        if (tagsContent.includes(id)) {
             photographer.style.display = "flex"
         } else {
             photographer.style.display = "none"
@@ -52,3 +57,15 @@ function displayPhotographersByTags (id) {
     }   
 }
 
+// Bouton redirection
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 200) {
+        document.getElementById('redirection').classList.remove('hidden')
+    } else if (window.scrollY === 0) {
+        document.getElementById('redirection').classList.add('hidden')
+    }
+})
+
+function addClassHidden () {
+    document.getElementById('redirection').classList.add('hidden')
+}

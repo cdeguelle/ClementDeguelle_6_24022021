@@ -15,38 +15,24 @@
 <body>
     <header class="header" role="banner">
         <a href="./index.html" id="fisheye-logo">
-            <img src="./public/img/Sample_Photos/Logo.png" alt="Logo de FishEye">
+            <img src="./public/img/Sample_Photos/Logo.png" alt="FishEye Home page">
         </a>
     </header>
 
     <main>
-        <section class="photographer-card">
-           
-        </section>
+        <section class="photographer-card"></section>
+        
         <div class="filter">
-            <a class="filter-dropdown-link" aria-haspopup="true" aria-expanded="false" href="#">
-                <span class="filter-dropdown-link-content">
-                    Trier par
-                </span>
-            </a>
-            <ul class="dropdown">
-                <li>
-                    <a id="popularity" onclick="sortByPopularity()">
-                        Popularité
-                    </a>
-                    <i id="chevron__popularity" class="fas fa-chevron-up dropdown__icon"></i>
+            <button id="dropdown-button" class="filter__dropdown-link" aria-haspopup="listbox" aria-expanded="false">Trier par</button>
+            <ul role="listbox" id="dropdown-list" class="dropdown">
+                <li role="option">
+                    <a href="#" id="popularity" class="dropdown__item" onclick="sortBy('popularity'); event.preventDefault()">Popularité</a><i id="chevron__popularity" class="fas fa-chevron-up dropdown__icon"></i>
                 </li>
-                <li>
-                    <a id="date" onclick="sortByDate()">
-                        Date
-                    </a>
-                    <i id="chevron__date" class="fas fa-chevron-up dropdown__icon"></i>
+                <li role="option">
+                    <a href="#" id="date" class="dropdown__item" onclick="sortBy('date'); event.preventDefault()">Date</a><i id="chevron__date" class="fas fa-chevron-up dropdown__icon"></i>
                 </li>
-                <li class="dropdown__link-last">
-                    <a id="title" onclick="sortByTitle()">
-                        Titre
-                    </a>
-                    <i id="chevron__title" class="fas fa-chevron-up dropdown__icon"></i>
+                <li role="option" class="dropdown__link-last">
+                    <a href="#" id="title" class="dropdown__item" onclick="sortBy('title'); event.preventDefault()">Titre</a><i id="chevron__title" class="fas fa-chevron-up dropdown__icon"></i>
                 </li>
             </ul>
         </div>
@@ -54,35 +40,35 @@
         <section class="photo-grid"></section>
 
         <div id="carousel">
-            <span id="carousel__close" onclick="closeCarousel()"><i class="fas fa-times"></i></span>
-            <span id="carousel__next" onclick="nextCarousel()"><i class="fas fa-arrow-right"></i></span>
-            <span id="carousel__prev" onclick="prevCarousel()"><i class="fas fa-arrow-left"></i></span>
+            <span id="carousel__close" onclick="closeCarousel()" aria-label="ferme le carousel"><i class="fas fa-times"></i></span>
+            <span id="carousel__next" onclick="nextCarousel()" aria-label="image suivante"><i class="fas fa-arrow-right"></i></span>
+            <span id="carousel__prev" onclick="prevCarousel()" aria-label="image précédente"><i class="fas fa-arrow-left"></i></span>
             <div id="carousel__container"></div>
         </div>
 
         <div id="modal">
             <div id="modal__content">
-                <h2 id="modal__title">Contactez-moi<span id="modal__close"><i class="fas fa-times"></i></span></h2>
+                <h2 id="modal__title">Contactez-moi<span id="modal__close" aria-label="fermer le formulaire de contact"><i class="fas fa-times"></i></span></h2>
                 <h2 id="modal__title--name"></h2>
                 <div id="modal__body">
                     <form action="photographer.html" id="modal__form" name="contact" method="POST">
                         <div id="modal__data--first-name" class="modal__data" data-error="Veuillez entrer un prénom comportant 2 caractères ou plus" data-error-visible="false">
-                            <label for="first">Prénom</label>
-                            <input type="text" class="modal__input" id="first" name="first">
+                            <label class="modal__label" for="first">Prénom</label>
+                            <input type="text" class="modal__input" id="first" name="first" aria-labelledby="prénom">
                         </div>
                         <div id="modal__data--last-name" class="modal__data" data-error="Veuillez entrer un prénom comportant 2 caractères ou plus" data-error-visible="false">
-                            <label for="last">Nom</label>
-                            <input type="text" class="modal__input" id="last" name="last">
+                            <label class="modal__label" for="last">Nom</label>
+                            <input type="text" class="modal__input" id="last" name="last" aria-labelledby="nom">
                         </div>
                         <div id="modal__data--email" class="modal__data" data-error="Veuillez entrer une adresse email valide" data-error-visible="false">
-                            <label for="email">Email</label>
-                            <input type="text" class="modal__input" id="email" name="email">
+                            <label class="modal__label" for="email">Email</label>
+                            <input type="text" class="modal__input" id="email" name="email" aria-labelledby="email">
                         </div>
                         <div id="modal__data--textarea" class="modal__data">
-                            <label for="textarea">Votre message</label>
-                            <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea>
+                            <label class="modal__label" for="textarea">Votre message</label>
+                            <textarea name="textarea" id="textarea" cols="45" rows="5" aria-labelledby="votre message"></textarea>
                         </div>
-                        <input id="modal__submit" type="submit" value="Envoyer" />
+                        <input id="modal__submit" type="submit" value="Envoyer" aria-label="envoyer"/>
                     </form>
                 </div>
             </div>
@@ -94,6 +80,6 @@
         </div>
     </main>
 <script src="https://kit.fontawesome.com/7de816d9e9.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="./photographer.js"></script>
+<script type="text/javascript" src="./assets/javascript/photographer.js"></script>
 </body>
 </html>
