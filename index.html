@@ -19,24 +19,24 @@
         </a>
         <nav aria-label="photographer categories" role="navigation">
             <ul class="tags">
-                <li class="tags__name" id="portrait" onclick="displayPhotographersByTags('portrait')"><span class="hidden">Tag portrait</span>#Portrait</li>
-                <li class="tags__name" id="art" onclick="displayPhotographersByTags('art')"><span class="hidden">Tag art</span>#Art</li>
-                <li class="tags__name" id="fashion" onclick="displayPhotographersByTags('fashion')"><span class="hidden">Tag fashion</span>#Fashion</li>
-                <li class="tags__name" id="architecture" onclick="displayPhotographersByTags('architecture')"><span class="hidden">Tag architecture</span>#Architecture</li>
-                <li class="tags__name" id="travel" onclick="displayPhotographersByTags('travel')"><span class="hidden">Tag travel</span>#Travel</li>
-                <li class="tags__name" id="sport" onclick="displayPhotographersByTags('sport')"><span class="hidden">Tag sport</span>#Sport</li>
-                <li class="tags__name" id="animals" onclick="displayPhotographersByTags('animals')"><span class="hidden">Tag animaux</span>#Animals</li>
-                <li class="tags__name" id="events" onclick="displayPhotographersByTags('events')"><span class="hidden">Tag events</span>#Events</li>
+                <li class="tags__name" id="portrait"><a href="#" onclick="displayPhotographersByTags('portrait'); event.preventDefault()"><span class="hidden">Tag portrait</span>#Portrait</a></li>
+                <li class="tags__name" id="art"><a href="#" onclick="displayPhotographersByTags('art'); event.preventDefault()"><span class="hidden">Tag art</span>#Art</a></li>
+                <li class="tags__name" id="fashion"><a href="#" onclick="displayPhotographersByTags('fashion'); event.preventDefault()"><span class="hidden">Tag fashion</span>#Fashion</a></li>
+                <li class="tags__name" id="architecture"><a href="#" onclick="displayPhotographersByTags('architecture'); event.preventDefault()"><span class="hidden">Tag architecture</span>#Architecture</a></li>
+                <li class="tags__name" id="travel"><a href="#" onclick="displayPhotographersByTags('travel'); event.preventDefault()"><span class="hidden">Tag travel</span>#Travel</a></li>
+                <li class="tags__name" id="sport"><a href="#" onclick="displayPhotographersByTags('sport'); event.preventDefault()"><span class="hidden">Tag sport</span>#Sport</a></li>
+                <li class="tags__name" id="animals"><a href="#" onclick="displayPhotographersByTags('animals'); event.preventDefault()"><span class="hidden">Tag animaux</span>#Animals</a></li>
+                <li class="tags__name" id="events"><a href="#" onclick="displayPhotographersByTags('events'); event.preventDefault()"><span class="hidden">Tag events</span>#Events</a></li>
             </ul>
         </nav>
     </header>
 
+    <button id="redirection" class="hidden" onclick="addClassHidden()"><a id="redirection__link" href="#">Passer au contenu</a></button>
+
     <main>
         <h1>Nos photographes</h1>
 
-        <section id="photographers-grid">
-            
-        </section>
+        <section id="photographers-grid"></section>
     </main>
 <script src="https://kit.fontawesome.com/7de816d9e9.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="./assets/javascript/home.js"></script>

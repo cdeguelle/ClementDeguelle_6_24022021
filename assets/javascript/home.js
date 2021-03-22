@@ -38,7 +38,7 @@ function displayPhotographers (photographers) {
         </article>`;
         var tagsContainer = document.querySelector('#photographer-tags-' + photographers[index].id);
         for (let i = 0; i < photographers[index].tags.length; i++) {
-            tagsContainer.innerHTML += `<li class="tags__name tags__${photographers[index].id}" onclick="displayPhotographersByTags('${photographers[index].tags[i]}')"><span class="hidden">Tag ${photographers[index].tags[i]}</span>#${photographers[index].tags[i]}</li>`        
+            tagsContainer.innerHTML += `<li class="tags__name tags__${photographers[index].id}"><a href="#" onclick="displayPhotographersByTags('${photographers[index].tags[i]}'); event.preventDefault()"><span class="hidden">Tag ${photographers[index].tags[i]}</span>#${photographers[index].tags[i]}</a></li>`        
         }
     } 
 }
@@ -57,3 +57,15 @@ function displayPhotographersByTags (id) {
     }   
 }
 
+// Bouton redirection
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 200) {
+        document.getElementById('redirection').classList.remove('hidden')
+    } else if (window.scrollY === 0) {
+        document.getElementById('redirection').classList.add('hidden')
+    }
+})
+
+function addClassHidden () {
+    document.getElementById('redirection').classList.add('hidden')
+}

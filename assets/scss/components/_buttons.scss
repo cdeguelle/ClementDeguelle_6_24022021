@@ -9,6 +9,14 @@
         color: #901C1C;
         font-weight: 500;
         cursor: pointer;
+        & a {
+            text-decoration: none;
+            color: #901C1C;
+            &:hover {
+                background-color: #901C1C;
+                color: #ffffff;
+            }
+        }
         &:hover {
             background-color: #901C1C;
             color: #ffffff;

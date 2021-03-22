@@ -225,7 +225,7 @@ figure {
 }
 
 .photo {
-    width: 300px;
+    width: 350px;
     height: 250px;
     object-fit: cover;
     border-radius: 5px;
@@ -263,7 +263,7 @@ figure {
 }
 
 video {
-    width: 300px;
+    width: 350px;
     height: 250px;
     object-fit: cover;
     border-radius: 5px;
@@ -336,6 +336,7 @@ video {
     & h2 {
         text-align: center;
         width: 250px;
+        margin-top: 10px;
         @include desktop {
             width: 900px;
         }

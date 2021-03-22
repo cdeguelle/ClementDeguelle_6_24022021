@@ -82,7 +82,7 @@ function displayPhotographerInfo (photographer) {
     modalTitleName.innerHTML = photographer.name 
     var tagsContainerProfile = document.querySelector('.photographer__tags--profile');
     for (let i = 0; i < photographer.tags.length; i++) {
-        tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile" onclick="displayPhotographersByTags('${photographer.tags[i]}')"><a href=""></a><span class="hidden">Tag ${photographer.tags[i]}</span>#${photographer.tags[i]}</li>`
+        tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile"><a href="" onclick="displayPhotographersByTags('${photographer.tags[i]}'); event.preventDefault()"><span class="hidden">Tag ${photographer.tags[i]}</span>#${photographer.tags[i]}</a></li>`
     }
 }
 
@@ -166,6 +166,9 @@ function openCarousel (index) {
     let ratio = photographerMedia.length  
     carouselContainer.style.width = (ratio * 100) + "%"
     document.querySelectorAll('.carousel__item').forEach(elt => elt.style.width = 100 / ratio + "%")
+    if (dropdownMenu.style.display = 'block') {
+        dropdownMenu.style.display = 'none'
+    }
 }
 
 window.addEventListener('keydown', function (e) {
@@ -180,7 +183,7 @@ window.addEventListener('keydown', function (e) {
           closeCarousel();
           break;
         default:
-          return; // Quitter lorsque cela ne gère pas l'événement touche.
+          return; 
     }
     e.preventDefault();
 }, true)
@@ -201,13 +204,28 @@ function prevCarousel () {
 
 // Modal form
 modalClose.addEventListener('click', closeModal)
-modalSubmit.addEventListener('click', closeModal)
+modalSubmit.addEventListener('click', submitModal)
 
 function launchModal () {
     modal.style.display = "block"
+    if (dropdownMenu.style.display = 'block') {
+        dropdownMenu.style.display = 'none'
+    }
 }
 
-function closeModal (e) {
+function closeModal () {
+    modal.style.display = "none"
+}
+
+function submitModal (e) {
     e.preventDefault()
     modal.style.display = "none"
+    let firstName = document.getElementById('first').value
+    console.log(firstName)
+    let lastName = document.getElementById('last').value
+    console.log(lastName)
+    let email = document.getElementById('email').value
+    console.log(email)
+    let message = document.getElementById('textarea').value
+    console.log(message)
 }

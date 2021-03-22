@@ -8,6 +8,12 @@
   color: #901C1C;
   font-weight: 500;
   cursor: pointer; }
+  .tags__name a {
+    text-decoration: none;
+    color: #901C1C; }
+    .tags__name a:hover {
+      background-color: #901C1C;
+      color: #ffffff; }
   .tags__name:hover {
     background-color: #901C1C;
     color: #ffffff; }
@@ -46,9 +52,9 @@ header {
       margin: 30px 30px; } }
 
 #fisheye-logo {
-  scale: 0.6;
+  scale: 0.8;
   position: relative;
-  right: 20px; }
+  right: 10px; }
   @media screen and (min-width: 1024px) {
     #fisheye-logo {
       scale: 1;
@@ -101,6 +107,34 @@ h1 {
       position: initial;
       font-size: 2.25em;
       text-align: center; } }
+
+@media screen and (min-width: 1024px) {
+  #redirection {
+    background-color: #901C1C;
+    border-color: transparent;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 20px 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+    width: 170px;
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    padding: 5px; }
+    #redirection:hover {
+      background-color: #DB8876;
+      color: #000000; }
+    #redirection:focus {
+      background-color: #DB8876;
+      color: #000000; }
+    #redirection a {
+      text-decoration: none;
+      color: #fff; }
+      #redirection a:hover {
+        color: black; } }
 
 #photographers-grid {
   display: flex;
