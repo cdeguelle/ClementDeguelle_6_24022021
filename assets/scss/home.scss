@@ -4,12 +4,6 @@
     font-family: 'DM sans';
 }
 
-body {
-    @include tablette {
-        margin: 0;
-    }
-}
-
 h1 {
     font-size: 2.25em;
     color: #901C1C;
@@ -22,11 +16,6 @@ h1 {
         top: 8px;
         font-size: 2.25em;
         right: 100px;
-    }
-    @include tablette {
-        position: initial;
-        font-size: 2.25em;
-        text-align: center;
     }
 }
 
@@ -52,10 +41,6 @@ h1 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         margin-top: 80px;
-    }
-    @include tablette {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 

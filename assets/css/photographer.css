@@ -46,22 +46,14 @@ header {
       margin: 30px 0 0 100px;
       justify-content: space-between;
       width: 60%; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    header {
-      justify-content: space-between;
-      margin: 30px 30px; } }
 
 #fisheye-logo {
-  scale: 0.8;
-  position: relative;
-  right: 10px; }
+  margin-left: 20px; }
+  #fisheye-logo img {
+    width: 150px; }
   @media screen and (min-width: 1024px) {
-    #fisheye-logo {
-      scale: 1;
-      position: initial; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    #fisheye-logo {
-      scale: 0.8; } }
+    #fisheye-logo img {
+      width: 200px; } }
 
 .tags {
   font-family: 'DM Sans', sans-serif;
@@ -78,9 +70,6 @@ header {
       margin-top: 20px; }
       .tags__name {
         font-size: 0.8em; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .tags {
-      margin: 20px 0; } }
 
 .tags__name {
   border: 0.5px solid #C4C4C4;
@@ -130,22 +119,14 @@ header {
       margin: 30px 0 0 100px;
       justify-content: space-between;
       width: 60%; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    header {
-      justify-content: space-between;
-      margin: 30px 30px; } }
 
 #fisheye-logo {
-  scale: 0.8;
-  position: relative;
-  right: 10px; }
+  margin-left: 20px; }
+  #fisheye-logo img {
+    width: 150px; }
   @media screen and (min-width: 1024px) {
-    #fisheye-logo {
-      scale: 1;
-      position: initial; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    #fisheye-logo {
-      scale: 0.8; } }
+    #fisheye-logo img {
+      width: 200px; } }
 
 .tags {
   font-family: 'DM Sans', sans-serif;
@@ -162,16 +143,9 @@ header {
       margin-top: 20px; }
       .tags__name {
         font-size: 0.8em; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .tags {
-      margin: 20px 0; } }
 
 * {
   font-family: 'DM sans'; }
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  body {
-    margin: 0; } }
 
 h1 {
   font-size: 2.25em;
@@ -186,11 +160,6 @@ h1 {
       top: 8px;
       font-size: 2.25em;
       right: 100px; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    h1 {
-      position: initial;
-      font-size: 2.25em;
-      text-align: center; } }
 
 @media screen and (min-width: 1024px) {
   #redirection {
@@ -226,10 +195,6 @@ h1 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       margin-top: 80px; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    #photographers-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); } }
 
 .photographer {
   display: flex;
@@ -289,15 +254,7 @@ header {
   margin-bottom: 10px; }
 
 #fisheye-logo {
-  scale: 0.8;
   margin-left: 10px; }
-  @media screen and (min-width: 1024px) {
-    #fisheye-logo {
-      scale: 1;
-      margin-left: 0; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    #fisheye-logo {
-      margin-left: 0; } }
 
 .photographer-card {
   margin: 0 10px 30px;
@@ -313,9 +270,6 @@ header {
 .photographer__infos {
   display: flex;
   justify-content: space-between; }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .photographer__infos {
-      margin-left: 20px; } }
   @media screen and (min-width: 1024px) {
     .photographer__infos {
       justify-content: flex-start; } }
@@ -328,10 +282,6 @@ header {
   @media screen and (min-width: 1024px) {
     .photographer__name--profile {
       font-size: 4em;
-      width: auto; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .photographer__name--profile {
-      text-align: left;
       width: auto; } }
 
 .photographer__city--profile {
@@ -355,18 +305,13 @@ header {
   position: absolute;
   top: 110px;
   right: 20px;
-  box-shadow: 0px 4px 12px 0px #000000 25%; }
+  box-shadow: 0px 4px 12px 0px #bebcbc; }
   @media screen and (min-width: 1024px) {
     .photographer__picture--profile {
       width: 263px;
       height: 277px;
       top: 155px;
       right: 120px; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .photographer__picture--profile {
-      width: 200px;
-      height: 200px;
-      top: 35px; } }
 
 @media screen and (min-width: 1024px) {
   .photographer__tags {
@@ -386,9 +331,6 @@ header {
       margin-top: 20px;
       margin-left: 30px;
       height: 50px; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    #contact {
-      bottom: 50px; } }
 
 .filter {
   opacity: 0;
@@ -454,18 +396,6 @@ header {
       margin-right: 100px;
       justify-content: space-between;
       flex-wrap: wrap; } }
-  @media screen and (min-width: 768px) and (max-width: 1024px) {
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      margin: 0 20px; }
-      .photo-grid__picture {
-        display: flex;
-        flex-direction: column;
-        align-items: center; }
-      .photo-grid__description {
-        width: 300px;
-        margin: 0; } }
 
 figure {
   margin: 0; }
@@ -492,7 +422,7 @@ figure {
   .photo__like i {
     cursor: pointer; }
     .photo__like i:hover {
-      scale: 1.3; }
+      transform: scale(1.3); }
   @media screen and (min-width: 1024px) {
     .photo {
       width: 350px;
@@ -525,25 +455,28 @@ video {
     z-index: 2;
     top: 15px;
     right: 15px;
-    scale: 2;
     color: #901C1C;
     cursor: pointer; }
+    #carousel__close i {
+      font-size: 2em; }
   #carousel__next {
     position: fixed;
     z-index: 2;
     right: 20px;
     top: 50%;
-    scale: 2;
     color: #901C1C;
     cursor: pointer; }
+    #carousel__next i {
+      font-size: 2em; }
   #carousel__prev {
     position: fixed;
     z-index: 2;
     left: 20px;
     top: 50%;
-    scale: 2;
     color: #901C1C;
     cursor: pointer; }
+    #carousel__prev i {
+      font-size: 2em; }
   #carousel__container {
     display: flex;
     left: 50%;

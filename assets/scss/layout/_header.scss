@@ -7,22 +7,17 @@ header {
         justify-content: space-between;
         width: 60%;
     }
-    @include tablette {
-        justify-content: space-between;
-        margin: 30px 30px;
-    }
 }
 
 #fisheye-logo {
-    scale: 0.8;
-    position: relative;
-    right: 10px;
-    @include desktop {
-        scale: 1;
-        position: initial;
+    & img {
+        width: 150px;  
     }
-    @include tablette {
-        scale: 0.8;
+    margin-left: 20px;
+    @include desktop {
+        & img {
+            width: 200px;  
+        }
     }
 }
 
@@ -42,8 +37,5 @@ header {
         &__name {
             font-size: 0.8em;
         }
-    }
-    @include tablette {
-        margin: 20px 0;
     }
 }
