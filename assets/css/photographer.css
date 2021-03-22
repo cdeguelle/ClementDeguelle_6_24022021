@@ -207,18 +207,15 @@ h1 {
     left: 50%;
     width: 200px;
     margin-left: -100px;
-    padding: 5px; }
+    padding: 5px;
+    text-align: center;
+    text-decoration: none; }
     #redirection:hover {
       background-color: #DB8876;
       color: #000000; }
     #redirection:focus {
       background-color: #DB8876;
-      color: #000000; }
-    #redirection a {
-      text-decoration: none;
-      color: #fff; }
-      #redirection a:hover {
-        color: black; } }
+      color: #000000; } }
 
 #photographers-grid {
   display: flex;

@@ -59,7 +59,7 @@ function displayPhotographersByTags (id) {
 
 // Bouton redirection
 window.addEventListener('scroll', function() {
-    if (window.scrollY > 200) {
+    if (window.scrollY > 150) {
         document.getElementById('redirection').classList.remove('hidden')
     } else if (window.scrollY === 0) {
         document.getElementById('redirection').classList.add('hidden')
