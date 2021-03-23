@@ -120,10 +120,10 @@ function displayPhotographerGrid (array) {
     for (let index = 0; index < array.length; index++) {
         photographerGrid.innerHTML += `
         <article class="photo-grid__picture">
-            <figure class="photo-grid__link" onclick="openCarousel(${index})">
+            <a href="#" class="photo-grid__link" onclick="openCarousel(${index}); event.preventDefault()">
                 ${array[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${array[index].name}/${array[index].image}" alt="${array[index].description}, vue rapprochée" class="photo">` : ''}
                 ${array[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${array[index].name}/${array[index].video}" alt="${array[index].description}, vue rapprochée" class="video" type="video/mp4"></video>` : ''}
-            </figure>
+            </a>
             <div class="photo-grid__description">
                 <h2 class="photo__name">${array[index].description}</h2>
                 <p class="photo__price">${array[index].price} €</p>
