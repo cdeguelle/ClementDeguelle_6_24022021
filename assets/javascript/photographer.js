@@ -1,59 +1,56 @@
+/* eslint-disable no-constant-condition */
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-unused-vars */
 // DOM Elements
-const dropdownMenu = document.querySelector('.dropdown');
-const dropdownLink = document.querySelector('.filter__dropdown-link');
-const dropdownPopularity = document.getElementById('popularity');
-const dropdownDate = document.getElementById('date');
-const dropdownTitle = document.getElementById('title');
-const likesTotal = document.getElementById('info-stat__likes');
-const carousel = document.getElementById('carousel');
-const carouselContainer = document.getElementById('carousel__container');
-const carouselClose = document.getElementById('carousel__close');
-const carouselNext = document.getElementById('carousel__next');
-const carouselPrev = document.getElementById('carousel__prev');
-const modal = document.getElementById('modal');
-const modalClose = document.getElementById('modal__close');
-const modalTitleName = document.getElementById('modal__title--name');
-const modalSubmit = document.getElementById('modal__submit');
+const dropdownMenu = document.querySelector('.dropdown')
+const dropdownLink = document.querySelector('.filter__dropdown-link')
+const likesTotal = document.getElementById('info-stat__likes')
+const carousel = document.getElementById('carousel')
+const carouselContainer = document.getElementById('carousel__container')
+const modal = document.getElementById('modal')
+const modalClose = document.getElementById('modal__close')
+const modalTitleName = document.getElementById('modal__title--name')
+const modalSubmit = document.getElementById('modal__submit')
 
-// Menu déroulant 
-function toggleNavbar() {
+// Menu déroulant
+function toggleNavbar () {
     if (!dropdownMenu.getAttribute('style') || dropdownMenu.getAttribute('style') === 'display: none;') {
-        dropdownMenu.style.display = 'block';
-        dropdownLink.setAttribute('aria-expanded', 'true');
+        dropdownMenu.style.display = 'block'
+        dropdownLink.setAttribute('aria-expanded', 'true')
     } else {
-        dropdownMenu.style.display = 'none';
-        dropdownLink.setAttribute('aria-expanded', 'false');
+        dropdownMenu.style.display = 'none'
+        dropdownLink.setAttribute('aria-expanded', 'false')
     }
 }
 
-dropdownLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    toggleNavbar();
+dropdownLink.addEventListener('click', function (e) {
+    e.preventDefault()
+    toggleNavbar()
 })
 
 // PAGE DYNAMIQUE \\
 // Lecture de photographerID dans l'URL
-let photographerID = parseInt(new URLSearchParams(window.location.search).get('photographerID'), 10);
+const photographerID = parseInt(new URLSearchParams(window.location.search).get('photographerID'), 10)
 
 // Requête objet JSON
-let request = new XMLHttpRequest();
-let photographerMedia = [];
-let listOfphotographers = [];
+const request = new XMLHttpRequest()
+let photographerMedia = []
 
-request.onreadystatechange = function() {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        var response = JSON.parse(this.responseText);
-        console.log(response);
-        listOfphotographers = response.photographers
+request.onreadystatechange = function () {
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        const response = JSON.parse(this.responseText)
+        console.log(response)
         displayPhotographerInfo(response.photographers.find(photographer => {
             return photographer.id === photographerID
         }))
         photographerMedia = response.media.filter(filterById)
         displayPhotographerGrid(photographerMedia)
     }
-};
-request.open("GET", "data.json");
-request.send();
+}
+request.open('GET', 'data.json')
+request.send()
 
 // Récupération des photos/videos par id de photographe
 function filterById (media) {
@@ -66,7 +63,7 @@ function filterById (media) {
 
 // Remplissage dynamique des champs infos photographes
 function displayPhotographerInfo (photographer) {
-    let photographerCard = document.querySelector('.photographer-card');
+    const photographerCard = document.querySelector('.photographer-card')
     photographerCard.innerHTML += `
     <div class="photographer__infos">
         <div class="photographer__infos-txt">
@@ -77,45 +74,45 @@ function displayPhotographerInfo (photographer) {
         </div>
         <button id="contact" aria-label="Contact me" onclick="launchModal()">Contactez moi</button>
         <img src="./public/img/Sample_Photos/Photographers_ID_Photos/${photographer.portrait}" alt="${photographer.name}" class="photographer__picture photographer__picture--profile">
-    </div>`;
+    </div>`
     document.getElementById('info-stat__price').innerHTML = `${photographer.price}€/jour`
-    modalTitleName.innerHTML = photographer.name 
-    var tagsContainerProfile = document.querySelector('.photographer__tags--profile');
+    modalTitleName.innerHTML = photographer.name
+    const tagsContainerProfile = document.querySelector('.photographer__tags--profile')
     for (let i = 0; i < photographer.tags.length; i++) {
         tagsContainerProfile.innerHTML += `<li class="tags__name tags__name--profile"><a href="" onclick="displayPhotographersByTags('${photographer.tags[i]}'); event.preventDefault()"><span class="hidden">Tag ${photographer.tags[i]}</span>#${photographer.tags[i]}</a></li>`
     }
 }
 
 // Redirection vers la page d'acceuil au clic sur un tag + filtre en fonction du tag
-function displayPhotographersByTags(id) {
-    document.location.href = "./index.html?tag=" + id  
+function displayPhotographersByTags (id) {
+    document.location.href = './index.html?tag=' + id
 }
 
-// Tri du menu déroulant 
+// Tri du menu déroulant
 function sortBy (id) {
-    if (id === "popularity") {
+    if (id === 'popularity') {
         photographerMedia.sort((a, b) => a.likes - b.likes)
-        document.getElementById('chevron__popularity').style.color = "white"
-        document.getElementById('chevron__date').style.color = "#901C1C"
-        document.getElementById('chevron__title').style.color = "#901C1C"
-    } else if (id === "date") {
+        document.getElementById('chevron__popularity').style.color = 'white'
+        document.getElementById('chevron__date').style.color = '#901C1C'
+        document.getElementById('chevron__title').style.color = '#901C1C'
+    } else if (id === 'date') {
         photographerMedia.sort((a, b) => new Date(a.date) - new Date(b.date))
-        document.getElementById('chevron__popularity').style.color = "#901C1C"
-        document.getElementById('chevron__date').style.color = "white"
-        document.getElementById('chevron__title').style.color = "#901C1C"
-    } else if (id === "title") {
+        document.getElementById('chevron__popularity').style.color = '#901C1C'
+        document.getElementById('chevron__date').style.color = 'white'
+        document.getElementById('chevron__title').style.color = '#901C1C'
+    } else if (id === 'title') {
         photographerMedia.sort((a, b) => a.description > b.description)
-        document.getElementById('chevron__popularity').style.color = "#901C1C"
-        document.getElementById('chevron__date').style.color = "#901C1C"
-        document.getElementById('chevron__title').style.color = "white"
+        document.getElementById('chevron__popularity').style.color = '#901C1C'
+        document.getElementById('chevron__date').style.color = '#901C1C'
+        document.getElementById('chevron__title').style.color = 'white'
     }
     displayPhotographerGrid(photographerMedia)
 }
 
 // Remplissage dynamique de la grille de photos
 function displayPhotographerGrid (array) {
-    let photographerGrid = document.querySelector('.photo-grid')
-    photographerGrid.innerHTML = ""
+    const photographerGrid = document.querySelector('.photo-grid')
+    photographerGrid.innerHTML = ''
     let likesSum = 0
     for (let index = 0; index < array.length; index++) {
         photographerGrid.innerHTML += `
@@ -135,26 +132,26 @@ function displayPhotographerGrid (array) {
         </article>`
         likesSum += array[index].likes
     }
-    likesTotal.innerHTML = likesSum + `<i class="fas fa-heart"></i>`
+    likesTotal.innerHTML = likesSum + '<i class="fas fa-heart"></i>'
 }
 
 // Compteur de likes par photos
 function incrementPhotoLikesCount (id) {
-    let elem = document.getElementById(id)
+    const elem = document.getElementById(id)
     let likes = parseInt(elem.textContent, 10)
     let likesTotalNumber = parseInt(likesTotal.textContent, 10)
     likes++
     likesTotalNumber++
     elem.innerHTML = likes
-    likesTotal.innerHTML = likesTotalNumber + `<i class="fas fa-heart"></i>`
+    likesTotal.innerHTML = likesTotalNumber + '<i class="fas fa-heart"></i>'
 }
 
 // Carousel
 function openCarousel (index) {
-    carouselContainer.innerHTML = ""
-    let translateX = -100 / photographerMedia.length
+    carouselContainer.innerHTML = ''
+    const translateX = -100 / photographerMedia.length
     carouselContainer.style.transform = 'translateX(' + index * translateX + '%)'
-    carousel.style.display = "block"
+    carousel.style.display = 'block'
     for (let index = 0; index < photographerMedia.length; index++) {
         carouselContainer.innerHTML += `
         <figure class="carousel__item" aria-label="image vue rapprochée">
@@ -163,9 +160,9 @@ function openCarousel (index) {
             <h2 class="photo__name--carousel">${photographerMedia[index].description}</h2>
         <figure>`
     }
-    let ratio = photographerMedia.length  
-    carouselContainer.style.width = (ratio * 100) + "%"
-    document.querySelectorAll('.carousel__item').forEach(elt => elt.style.width = 100 / ratio + "%")
+    const ratio = photographerMedia.length
+    carouselContainer.style.width = (ratio * 100) + '%'
+    document.querySelectorAll('.carousel__item').forEach(elt => elt.style.width = 100 / ratio + '%')
     if (dropdownMenu.style.display = 'block') {
         dropdownMenu.style.display = 'none'
     }
@@ -173,33 +170,33 @@ function openCarousel (index) {
 
 window.addEventListener('keydown', function (e) {
     switch (e.key) {
-        case "ArrowLeft":
-          prevCarousel();
-          break;
-        case "ArrowRight":
-          nextCarousel();
-          break;
-        case "Escape":
-          closeCarousel();
-          closeModal();
-          break;
-        default:
-          return; 
+    case 'ArrowLeft':
+        prevCarousel()
+        break
+    case 'ArrowRight':
+        nextCarousel()
+        break
+    case 'Escape':
+        closeCarousel()
+        closeModal()
+        break
+    default:
+        return
     }
-    e.preventDefault();
+    e.preventDefault()
 }, true)
 
 function closeCarousel () {
-    carousel.style.display = "none"
+    carousel.style.display = 'none'
 }
 
 function nextCarousel () {
-    let translateX = -100 / photographerMedia.length
+    const translateX = -100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
 
 function prevCarousel () {
-    let translateX = 100 / photographerMedia.length
+    const translateX = 100 / photographerMedia.length
     carouselContainer.style.transform += 'translateX(' + translateX + '%)'
 }
 
@@ -208,25 +205,25 @@ modalClose.addEventListener('click', closeModal)
 modalSubmit.addEventListener('click', submitModal)
 
 function launchModal () {
-    modal.style.display = "block"
+    modal.style.display = 'block'
     if (dropdownMenu.style.display = 'block') {
         dropdownMenu.style.display = 'none'
     }
 }
 
 function closeModal () {
-    modal.style.display = "none"
+    modal.style.display = 'none'
 }
 
 function submitModal (e) {
     e.preventDefault()
-    modal.style.display = "none"
-    let firstName = document.getElementById('first').value
+    modal.style.display = 'none'
+    const firstName = document.getElementById('first').value
     console.log(firstName)
-    let lastName = document.getElementById('last').value
+    const lastName = document.getElementById('last').value
     console.log(lastName)
-    let email = document.getElementById('email').value
+    const email = document.getElementById('email').value
     console.log(email)
-    let message = document.getElementById('textarea').value
+    const message = document.getElementById('textarea').value
     console.log(message)
 }

@@ -1,11 +1,11 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 
 module.exports = {
     entry: {
-        home: ["/assets/scss/home.scss"],
-        photographer: ["/assets/scss/photographer.scss"],
+        home: ['/assets/scss/home.scss'],
+        photographer: ['/assets/scss/photographer.scss']
     },
     module: {
         rules: [
@@ -14,21 +14,21 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     // Translates CSS into CommonJS
-                    "css-loader",
-                    "postcss-loader",
+                    'css-loader',
+                    'postcss-loader',
                     // Compiles Sass to CSS
-                    "sass-loader",
-                ],
-            },
-        ],
+                    'sass-loader'
+                ]
+            }
+        ]
     },
     output: {
-        path: path.resolve(__dirname, "assets/css/"),
+        path: path.resolve(__dirname, 'assets/css/')
     },
     plugins: [
         new RemoveEmptyScriptsPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-        }),
-    ],
+            filename: '[name].css'
+        })
+    ]
 }
