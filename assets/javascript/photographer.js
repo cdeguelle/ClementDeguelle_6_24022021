@@ -181,6 +181,7 @@ window.addEventListener('keydown', function (e) {
           break;
         case "Escape":
           closeCarousel();
+          closeModal();
           break;
         default:
           return; 
