@@ -42,7 +42,7 @@ header {
             position: initial;
             font-size: 2.2em;
             margin-top: 0;
-            width: 180px;
+            width: 230px;
             @include desktop {
                 font-size: 4em;
                 width: auto;
@@ -72,11 +72,11 @@ header {
         &--profile {
             width: 100px;
             height: 100px;
-            position: absolute;
-            top: 110px;
-            right: 20px;
+            margin-top: 10px;
+            margin-right: 10px;
             box-shadow: 0px 4px 12px 0px #bebcbc;
             @include desktop {
+                position: absolute;
                 width: 263px;
                 height: 277px;
                 top: 155px;

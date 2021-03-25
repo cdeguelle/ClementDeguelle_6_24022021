@@ -154,37 +154,39 @@ h1 {
   right: 30px;
   font-weight: 400;
   font-size: 0.9em;
-  top: 40px; }
+  top: 30px; }
   @media screen and (min-width: 1024px) {
     h1 {
       top: 8px;
       font-size: 2.25em;
       right: 100px; } }
 
-@media screen and (min-width: 1024px) {
-  #redirection {
-    background-color: #901C1C;
-    border-color: transparent;
-    color: #ffffff;
-    border-radius: 5px;
-    padding: 20px 10px;
-    font-size: 1.1em;
-    font-weight: 700;
-    width: 170px;
-    position: fixed;
-    top: 5px;
-    left: 50%;
-    width: 200px;
-    margin-left: -100px;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none; }
-    #redirection:hover {
-      background-color: #DB8876;
-      color: #000000; }
-    #redirection:focus {
-      background-color: #DB8876;
-      color: #000000; } }
+#redirection {
+  display: none; }
+  @media screen and (min-width: 1024px) {
+    #redirection {
+      background-color: #901C1C;
+      border-color: transparent;
+      color: #ffffff;
+      border-radius: 5px;
+      padding: 20px 10px;
+      font-size: 1.1em;
+      font-weight: 700;
+      width: 170px;
+      position: fixed;
+      top: 5px;
+      left: 50%;
+      width: 200px;
+      margin-left: -100px;
+      padding: 5px;
+      text-align: center;
+      text-decoration: none; }
+      #redirection:hover {
+        background-color: #DB8876;
+        color: #000000; }
+      #redirection:focus {
+        background-color: #DB8876;
+        color: #000000; } }
 
 #photographers-grid {
   display: flex;
@@ -278,7 +280,7 @@ header {
   position: initial;
   font-size: 2.2em;
   margin-top: 0;
-  width: 180px; }
+  width: 230px; }
   @media screen and (min-width: 1024px) {
     .photographer__name--profile {
       font-size: 4em;
@@ -302,12 +304,12 @@ header {
 .photographer__picture--profile {
   width: 100px;
   height: 100px;
-  position: absolute;
-  top: 110px;
-  right: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
   box-shadow: 0px 4px 12px 0px #bebcbc; }
   @media screen and (min-width: 1024px) {
     .photographer__picture--profile {
+      position: absolute;
       width: 263px;
       height: 277px;
       top: 155px;

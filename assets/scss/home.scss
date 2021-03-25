@@ -11,7 +11,7 @@ h1 {
     right: 30px;
     font-weight: 400;
     font-size: 0.9em;
-    top: 40px;
+    top: 30px;
     @include desktop {
         top: 8px;
         font-size: 2.25em;
@@ -20,6 +20,7 @@ h1 {
 }
 
 #redirection {
+    display: none;
     @include desktop {
         @include button;
         position: fixed;
