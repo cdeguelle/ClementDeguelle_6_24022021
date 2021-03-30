@@ -26,9 +26,7 @@ function displayPhotographers (photographers) {
         photographersContainer.innerHTML += `
         <article class="photographer" id="${photographers[index].id}">
             <a href="./photographer.html?photographerID=${photographers[index].id}" class="photographer__link" id="photographer-${photographers[index].id}">
-                <figure>
-                    <img src="./public/img/Sample_Photos/Photographers_ID_Photos/${photographers[index].portrait}" alt="${photographers[index].name}" class="photographer__picture">
-                </figure>
+                <img src="./public/img/Sample_Photos/Photographers_ID_Photos/${photographers[index].portrait}" alt="${photographers[index].name}" class="photographer__picture">
                 <h2 class="photographer__name">${photographers[index].name}</h2>
             </a>
             <p class="photographer__city">${photographers[index].city}, ${photographers[index].country}</p>
