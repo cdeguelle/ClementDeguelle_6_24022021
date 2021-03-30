@@ -26,13 +26,13 @@
             <button id="dropdown-button" class="filter__dropdown-link" aria-haspopup="listbox" aria-expanded="false">Trier par</button>
             <ul role="listbox" id="dropdown-list" class="dropdown">
                 <li role="option">
-                    <a href="#" id="popularity" class="dropdown__item" onclick="sortBy('popularity'); event.preventDefault()">Popularité</a><i id="chevron__popularity" class="fas fa-chevron-up dropdown__icon"></i>
+                    <a href="#" id="popularity" class="dropdown__item" onclick="sortBy('popularity'); event.preventDefault()">Popularité</a><em id="chevron__popularity" class="fas fa-chevron-up dropdown__icon"></em>
                 </li>
                 <li role="option">
-                    <a href="#" id="date" class="dropdown__item" onclick="sortBy('date'); event.preventDefault()">Date</a><i id="chevron__date" class="fas fa-chevron-up dropdown__icon"></i>
+                    <a href="#" id="date" class="dropdown__item" onclick="sortBy('date'); event.preventDefault()">Date</a><em id="chevron__date" class="fas fa-chevron-up dropdown__icon"></em>
                 </li>
                 <li role="option" class="dropdown__link-last">
-                    <a href="#" id="title" class="dropdown__item" onclick="sortBy('title'); event.preventDefault()">Titre</a><i id="chevron__title" class="fas fa-chevron-up dropdown__icon"></i>
+                    <a href="#" id="title" class="dropdown__item" onclick="sortBy('title'); event.preventDefault()">Titre</a><em id="chevron__title" class="fas fa-chevron-up dropdown__icon"></em>
                 </li>
             </ul>
         </div>
@@ -40,15 +40,15 @@
         <section class="photo-grid"></section>
 
         <div id="carousel">
-            <span id="carousel__close" onclick="closeCarousel()" aria-label="ferme le carousel"><i class="fas fa-times"></i></span>
-            <span id="carousel__next" onclick="nextCarousel()" aria-label="image suivante"><i class="fas fa-arrow-right"></i></span>
-            <span id="carousel__prev" onclick="prevCarousel()" aria-label="image précédente"><i class="fas fa-arrow-left"></i></span>
+            <span id="carousel__close" onclick="closeCarousel()" aria-label="ferme le carousel"><em class="fas fa-times"></em></span>
+            <span id="carousel__next" onclick="nextCarousel()" aria-label="image suivante"><em class="fas fa-arrow-right"></em></span>
+            <span id="carousel__prev" onclick="prevCarousel()" aria-label="image précédente"><em class="fas fa-arrow-left"></em></span>
             <div id="carousel__container"></div>
         </div>
 
         <div id="modal">
             <div id="modal__content">
-                <h2 id="modal__title">Contactez-moi<span id="modal__close" aria-label="fermer le formulaire de contact"><i class="fas fa-times"></i></span></h2>
+                <h2 id="modal__title">Contactez-moi<span id="modal__close" aria-label="fermer le formulaire de contact"><em class="fas fa-times"></em></span></h2>
                 <h2 id="modal__title--name"></h2>
                 <div id="modal__body">
                     <form action="photographer.html" id="modal__form" name="contact" method="POST">

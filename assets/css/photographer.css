@@ -459,7 +459,7 @@ video {
     right: 15px;
     color: #901C1C;
     cursor: pointer; }
-    #carousel__close i {
+    #carousel__close em {
       font-size: 2em; }
   #carousel__next {
     position: fixed;
@@ -468,7 +468,7 @@ video {
     top: 50%;
     color: #901C1C;
     cursor: pointer; }
-    #carousel__next i {
+    #carousel__next em {
       font-size: 2em; }
   #carousel__prev {
     position: fixed;
@@ -477,7 +477,7 @@ video {
     top: 50%;
     color: #901C1C;
     cursor: pointer; }
-    #carousel__prev i {
+    #carousel__prev em {
       font-size: 2em; }
   #carousel__container {
     display: flex;
