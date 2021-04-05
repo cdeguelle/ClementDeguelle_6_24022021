@@ -109,27 +109,116 @@ function sortBy (id) {
     displayPhotographerGrid(photographerMedia)
 }
 
+// Pattern Factory
+function elFactory (type, attributes, ...children) {
+    const el = document.createElement(type)
+    for (const key in attributes) {
+        el.setAttribute(key, attributes[key])
+    }
+
+    children.forEach(child => {
+        if (typeof child === 'string') {
+            el.appendChild(document.createTextNode(child))
+        } else {
+            el.appendChild(child)
+        }
+    })
+
+    return el
+}
+
 // Remplissage dynamique de la grille de photos
 function displayPhotographerGrid (array) {
     const photographerGrid = document.querySelector('.photo-grid')
     photographerGrid.innerHTML = ''
     let likesSum = 0
     for (let index = 0; index < array.length; index++) {
-        photographerGrid.innerHTML += `
-        <article class="photo-grid__picture">
-            <a href="#" class="photo-grid__link" onclick="openCarousel(${index}); event.preventDefault()">
-                ${array[index].hasOwnProperty('image') ? `<img src="./public/img/Sample_Photos/${array[index].name}/${array[index].image}" alt="${array[index].description}, vue rapprochée" class="photo">` : ''}
-                ${array[index].hasOwnProperty('video') ? `<video controls><source src="./public/img/Sample_Photos/${array[index].name}/${array[index].video}" alt="${array[index].description}, vue rapprochée" class="video" type="video/mp4"></video>` : ''}
-            </a>
-            <div class="photo-grid__description">
-                <h2 class="photo__name">${array[index].description}</h2>
-                <p class="photo__price">${array[index].price} €</p>
-                <p class="photo__like">
-                <span class="photo__like-count" id="photo__like-count-${array[index].id}">${array[index].likes}</span>
-                <i class="fas fa-heart photo__like-icon" id="photo__like-icon-${array[index].id}" aria-label="likes" onclick="incrementPhotoLikesCount('photo__like-count-${array[index].id}')"></i>
-                </p>
-            </div>
-        </article>`
+        let mediaElement = ''
+
+        if (array[index].hasOwnProperty('image')) {
+            mediaElement = elFactory(
+                'img',
+                {
+                    src: './public/img/Sample_Photos/' + array[index].name + '/' + array[index].image,
+                    alt: array[index].description + ', vue rapprochée',
+                    class: 'photo'
+                }
+            )
+        } else {
+            mediaElement = elFactory(
+                'video',
+                {
+                    controls: ''
+                },
+                elFactory(
+                    'source',
+                    {
+                        src: './public/img/Sample_Photos/' + array[index].name + '/' + array[index].video,
+                        alt: array[index].description + ', vue rapprochée',
+                        class: 'video',
+                        type: 'video/mp4'
+                    }
+                )
+            )
+        }
+
+        const articleElement = elFactory(
+            'article',
+            { class: 'photo-grid__picture' },
+            elFactory(
+                'a',
+                {
+                    href: '#',
+                    class: 'photo-grid__link',
+                    onclick: 'openCarousel(' + index + '); event.preventDefault()'
+                },
+                mediaElement
+            ),
+            elFactory(
+                'div',
+                {
+                    class: 'photo-grid__description'
+                },
+                elFactory(
+                    'h2',
+                    {
+                        class: 'photo__name'
+                    },
+                    array[index].description
+                ),
+                elFactory(
+                    'p',
+                    {
+                        class: 'photo__price'
+                    },
+                    array[index].price.toString() + ' €'
+                ),
+                elFactory(
+                    'p',
+                    {
+                        class: 'photo__like'
+                    },
+                    elFactory(
+                        'span',
+                        {
+                            class: 'photo__like-count',
+                            id: 'photo__like-count-' + array[index].id
+                        },
+                        array[index].likes.toString()
+                    ),
+                    elFactory(
+                        'i',
+                        {
+                            class: 'fas fa-heart photo__like-icon',
+                            id: 'photo__like-icon-' + array[index].id,
+                            'aria-label': 'likes',
+                            onclick: 'incrementPhotoLikesCount("photo__like-count-' + array[index].id + '")'
+                        }
+                    )
+                )
+            )
+        )
+        photographerGrid.appendChild(articleElement)
         likesSum += array[index].likes
     }
     likesTotal.innerHTML = likesSum + '<i class="fas fa-heart"></i>'
